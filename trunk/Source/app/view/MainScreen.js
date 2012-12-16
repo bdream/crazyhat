@@ -36,7 +36,8 @@ Ext.define("CrazyHat.view.MainScreen", {
 			}
 		});
 		
-		var gamePreparingScreen = Ext.create('CrazyHat.view.GamePreparingScreen', {
+/*
+		var gamePreparingScreen = Ext.create('CrazyHat.view.GameScreen.GamePreparingScreen', {
 			listeners: {
 				scope: this,
 				buttonclick: function(){
@@ -45,13 +46,14 @@ Ext.define("CrazyHat.view.MainScreen", {
 				}
 			}
 		});
+*/
 		
 		var settingsScreen = Ext.create('CrazyHat.view.SettingsScreen', {
 			listeners: {
 				scope: this,
 				buttonclick: function(){
 					// Set active game preparing screen
-					this.setActiveItem(gamePreparingScreen);
+					this.setActiveItem(gameScreen);
 				}
 			}
 		});

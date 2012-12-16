@@ -9,9 +9,14 @@ Ext.application({
 		'MainScreen',
 		
 		'MenuScreen',
-		'SettingsScreen', 
-		'GamePreparingScreen',
+		
+		'SettingsScreen',
+		
+		// Game process screens	
 		'GameScreen',
+		'PlayerTurn',
+		'EditResultsAfterPlayerTurn',
+		
 		'ResultsScreen'
 	],
 
