@@ -34,7 +34,7 @@ Ext.define("CrazyHat.view.GameScreen", {
 		var playerTurnView = Ext.create('CrazyHat.view.PlayerTurn',{
 			listeners: {
 				scope: this,
-				buttonclick: function(){
+				nextWordButtonClick: function(){
 					// Set active game preparing screen
 					this.setActiveItem(editResultsAfterPlayerTurnView);
 				}

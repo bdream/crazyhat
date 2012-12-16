@@ -19,19 +19,20 @@ Ext.define("CrazyHat.view.PlayerTurn", {
 	initialize : function() {
         this.callParent();
 
-		var button = new Ext.Button({
+		var buttonNextWord = new Ext.Button({
+				
 				scope: this,
-				text: 'Button',
-				handler: this.onButtonClick
+				text: 'Next word',
+				handler: this.onNextWordButtonClick
 			});
 			
         this.setItems([
-			button
+			buttonNextWord
 		]);
 
     },
 	
-	onButtonClick: function() {
-		this.fireEvent('buttonclick');
+	onNextWordButtonClick: function() {
+		this.fireEvent('nextWordButtonClick');
 	}
 });
