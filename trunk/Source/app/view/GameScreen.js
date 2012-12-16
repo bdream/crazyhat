@@ -11,21 +11,46 @@ Ext.define("CrazyHat.view.GameScreen", {
 	requires: [
 		'Ext.Msg'
 	],
-	
+		
 	config: {
-		html: 'GameScreen',
+		layout: {
+			type: 'card'
+		}
 	},
 	
 	initialize : function() {
         this.callParent();
-
-		var button = new Ext.Button({
+		
+		var editResultsAfterPlayerTurnView = Ext.create('CrazyHat.view.EditResultsAfterPlayerTurn',{
+			listeners: {
 				scope: this,
-				text: 'Button',
+				buttonclick: function(){
+					// Set active game preparing screen
+					this.setActiveItem(playerTurnView);
+				}
+			}
+		});
+		
+		var playerTurnView = Ext.create('CrazyHat.view.PlayerTurn',{
+			listeners: {
+				scope: this,
+				buttonclick: function(){
+					// Set active game preparing screen
+					this.setActiveItem(editResultsAfterPlayerTurnView);
+				}
+			}
+		});
+		
+		// Button to debug
+		var button = new Ext.Button({
+				docked: 'bottom',
+				scope: this,
+				text: 'Go to results',
 				handler: this.onButtonClick
 			});
 			
         this.setItems([
+			playerTurnView,
 			button
 		]);
 
