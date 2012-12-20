@@ -31,15 +31,32 @@ Ext.define("CrazyHat.view.GameScreen", {
 			}
 		});
 		
+		var wordsInHat = 5;
+		var playerScore = 0;
+		
 		var playerTurnView = Ext.create('CrazyHat.view.PlayerTurn',{
 			listeners: {
 				scope: this,
 				nextWordButtonClick: function(){
-					// Set active game preparing screen
-					this.setActiveItem(editResultsAfterPlayerTurnView);
+					if(wordsInHat <= 0){
+						wordsInHat = 5;
+						playerScore = 0;
+						
+						// Set active game preparing screen
+						this.setActiveItem(editResultsAfterPlayerTurnView);
+					}
+					else{
+						wordsInHat--;
+						playerScore++;
+					}
+						
+					playerTurnView.setWordsInHat(wordsInHat);
+					playerTurnView.setPlayerScore(playerScore);
 				}
 			}
 		});
+		playerTurnView.setWordsInHat(wordsInHat);
+		playerTurnView.setPlayerScore(playerScore);
 		
 		// Button to debug
 		var button = new Ext.Button({
@@ -55,7 +72,7 @@ Ext.define("CrazyHat.view.GameScreen", {
 		]);
 
     },
-	
+		
 	onButtonClick: function() {
 		this.fireEvent('buttonclick');
 	}

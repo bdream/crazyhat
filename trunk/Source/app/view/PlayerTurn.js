@@ -13,6 +13,21 @@ Ext.define("CrazyHat.view.PlayerTurn", {
 		'Ext.Label'
 	],
 	
+	config: {
+	   items: [
+		   {
+			   xtype: 'label',
+			   itemId: 'wordsInHat',
+			   html: 'This is an item'
+		   },
+		   {
+			   xtype: 'label',
+			   itemId: 'playerScoreLabel',
+			   html: 'This is player score label'
+		   }
+	   ]
+	},
+	
 	initialize : function() {
         this.callParent();
 		
@@ -30,12 +45,6 @@ Ext.define("CrazyHat.view.PlayerTurn", {
 			handler: this.onNextWordButtonClick
 		});
 		
-		// Количество слов в шляпе
-		var wordsInHatLabel = Ext.Label({
-			html: 'Words in Hat:' + this.wordsInHat,
-			docked: 'top'
-		});
-		
 		// Количество угаданных слов текущего игрока
 		var playerScoreLabel = Ext.Label({
 			html: "Player's score:" + this.playerScore,
@@ -48,7 +57,6 @@ Ext.define("CrazyHat.view.PlayerTurn", {
 		});
 			
         this.setItems([
-			wordsInHatLabel,
 			playerScoreLabel,
 			timerLabel,
 			currentWordLabel,
@@ -65,6 +73,20 @@ Ext.define("CrazyHat.view.PlayerTurn", {
 	
 	// Количество времени оставшееся на ход
 	timer: '00:00',
+	
+	// Устанавливает количество слов в шляпе
+	setWordsInHat: function(count) {
+		var wordsInHatLabel = this.getComponent('wordsInHat');
+		resultString = "Words in Hat: " + count;
+		wordsInHatLabel.setHtml(resultString);
+	},
+	
+	// Устанавливает количество очков у игрока
+	setPlayerScore: function(count) {
+		var playerScoreLabel = this.getComponent('playerScoreLabel');
+		resultString = "Player's score: " + count;
+		playerScoreLabel.setHtml(resultString);
+	},
 	
 	// Возбуждает событие нажатия на кнопку получения следующего слова
 	onNextWordButtonClick: function() {
