@@ -5,6 +5,10 @@ Ext.application({
         'Ext.MessageBox'
     ],
 
+    models: [
+        'CrazyHat.model.GameSettings'
+    ],
+
     views: [
 		'MainScreen',
 		

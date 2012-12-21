@@ -12,9 +12,13 @@ Ext.define("CrazyHat.view.MainScreen", {
 			type: 'card'
 		}
 	},
+
+    gameSettings:null, // игровые настройки
 	
 	initialize: function(){
 		this.callParent();
+
+        this.gameSettings = Ext.create('CrazyHat.model.GameSettings');
 
 		var resultsScreen = Ext.create('CrazyHat.view.ResultsScreen', {
 			listeners: {
@@ -51,7 +55,11 @@ Ext.define("CrazyHat.view.MainScreen", {
 		var settingsScreen = Ext.create('CrazyHat.view.SettingsScreen', {
 			listeners: {
 				scope: this,
-				buttonclick: function(){
+				buttonclick: function(localGameSettings){
+
+                    // применяем настройки, введенные на вьюшке SettingsScreen
+                    this.gameSettings = localGameSettings;
+
 					// Set active game preparing screen
 					this.setActiveItem(gameScreen);
 				}
