@@ -24,20 +24,25 @@ Ext.define("CrazyHat.view.SettingsScreen", {
     teamsCount: 2,
 
 	config: {
+        scope: this,
         items: [
             {
+                scope: this,
+                itemId : 'gameConfig',
                 xtype: 'fieldset',
                 title: 'Параметры игры: ',
                 items: [
                     {
+                        scope: this,
                         xtype: 'checkboxfield',
-                        name : 'isTeamGame',
+                        itemId : 'isTeamGame',
                         label: 'Командная игра',
                         checked: false
                     },
                     {
+                        scope: this,
                         xtype: 'checkboxfield',
-                        name : 'isRandomTeams',
+                        itemId : 'isRandomTeams',
                         label: 'Случайное распределение по командам',
                         checked: true
                     },
@@ -46,28 +51,28 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                         label: 'Время, отведенное на раунд: ',
                         minValue: 1,
                         maxValue: 120,
-                        name: 'timeForRound'
+                        itemId: 'timeForRound'
                     },
                     {
                         xtype: 'numberfield',
                         label: 'Количество людей в игре: ',
                         minValue: 4,
                         maxValue: 30,
-                        name: 'personsCount'
+                        itemId: 'personsCount'
                     },
                     {
                         xtype: 'numberfield',
                         label: 'Количество слов, придумываемых игроком: ',
                         minValue: 1,
                         maxValue: 20,
-                        name: 'wordsPerPerson'
+                        itemId: 'wordsPerPerson'
                     },
                     {
                         xtype: 'numberfield',
                         label: 'Количество команд в игре: ',
                         minValue: 2,
                         maxValue: 15,
-                        name: 'teamsCount'
+                        itemId: 'teamsCount'
                     }
                 ]
             }
@@ -78,31 +83,34 @@ Ext.define("CrazyHat.view.SettingsScreen", {
         this.callParent();
 
         this.localGameSettings = Ext.create('CrazyHat.model.GameSettings');
-
+/*
         isTeamGame = this.localGameSettings.isTeamGame;
         isRandomTeams = this.localGameSettings.isRandomTeams;
         timeForRound = this.localGameSettings.timeForRound;
         personsCount = this.localGameSettings.personsCount;
         wordsPerPerson = this.localGameSettings.wordsPerPerson;
         teamsCount = this.localGameSettings.teamsCount;
+*/
 
-        /*
+        var gameConfig = this.getComponent('gameConfig');
+
+        var isTeamGame = gameConfig.getComponent('isTeamGame');
+        var isRandomTeams = gameConfig.getComponent('isRandomTeams');
+
         isTeamGame.listeners =
         {
-            check: this.onUpdateRecord(),
-            uncheck: this.onUpdateRecord()
+            scope: this,
+            check: this.onUpdateRecord
         };
         isRandomTeams.listeners =
         {
-            check: this.onUpdateRecord(),
-            uncheck: this.onUpdateRecord()
+            scope: this,
+            check: this.onUpdateRecord
         };
-*/
 
         var button = new Ext.Button({
 				scope: this,
-				text: 'Далее',
-				handler: this.onButtonClick
+				text: 'Далее'
 			});
 
         this.setItems([
@@ -115,31 +123,41 @@ Ext.define("CrazyHat.view.SettingsScreen", {
 		this.fireEvent('buttonclick', this.localGameSettings);
 	},
     onUpdateRecord : function(){
-        //var isTeamGame = this.getItems('isTeamGame');
-        //var isRandomTeams = this.getItems('isRandomTeams');
-        //var items = this.getItems('items');
-/*
-        if(this.isTeamGame == false){
-            this.isRandomTeams.hide();
-            items.getItem(timeForRound).show();
-            items.getItem(personsCount).show();
-            items.getItem(wordsPerPerson).show();
-            items.getItem(teamsCount).hide();
+
+        var gameConfig = this.getComponent('gameConfig');
+
+        var isTeamGame = gameConfig.getComponent('isTeamGame');
+        var isRandomTeams = gameConfig.getComponent('isRandomTeams');
+        var timeForRound = gameConfig.getComponent('timeForRound');
+        var personsCount = gameConfig.getComponent('personsCount');
+        var wordsPerPerson = gameConfig.getComponent('wordsPerPerson');
+        var teamsCount = gameConfig.getComponent('teamsCount');
+
+
+        if(isTeamGame.checked == false){
+            alert("asd");
+            isRandomTeams.hide();
+            timeForRound.show();
+            personsCount.show();
+            wordsPerPerson.show();
+            teamsCount.hide();
         }
-        else if(this.isRandomTeams == false){
+        else if(isRandomTeams.checked == false){
+            alert("asd");
             isRandomTeams.show();
-            items.getItem(timeForRound).show();
-            items.getItem(personsCount).hide();
-            items.getItem(wordsPerPerson).show();
-            items.getItem(teamsCount).hide();
+            timeForRound.show();
+            personsCount.hide();
+            wordsPerPerson.show();
+            teamsCount.hide();
         }
         else{
-            this.getItems('isRandomTeams').show();
-            items.getItem(timeForRound).show();
-            items.getItem(personsCount).show();
-            items.getItem(wordsPerPerson).show();
-            items.getItem(teamsCount).show();
+            alert("asd");
+            isRandomTeams.show();
+            timeForRound.show();
+            personsCount.show();
+            wordsPerPerson.show();
+            teamsCount.show();
         }
-        */
+
     }
 });
