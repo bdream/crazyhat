@@ -13,7 +13,7 @@ Ext.define("CrazyHat.view.ResultsScreen", {
 	],
 	
 	config: {
-		html: 'ResultsScreen',
+		html: 'ResultsScreen'
 	},
 	
 	initialize : function() {

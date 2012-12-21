@@ -13,7 +13,7 @@ Ext.define("CrazyHat.view.EditResultsAfterPlayerTurn", {
 	],
 	
 	config: {
-		html: 'GameScreen.EditResultsAfterPlayerTurn',
+		html: 'GameScreen.EditResultsAfterPlayerTurn'
 	},
 	
 	initialize : function() {
@@ -21,7 +21,7 @@ Ext.define("CrazyHat.view.EditResultsAfterPlayerTurn", {
 
 		var button = new Ext.Button({
 				scope: this,
-				text: 'Button',
+				text: 'Next',
 				handler: this.onButtonClick
 			});
 			
