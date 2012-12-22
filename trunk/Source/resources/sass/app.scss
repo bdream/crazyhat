@@ -2,9 +2,6 @@
     background-color: $first;
     background: -webkit-gradient( linear, left top, left bottom, color-stop(0, $first ), color-stop(1, $second)) !important;
     background: -webkit-linear-gradient(top, $first, $second) !important;
-    background: -o-linear-gradient(top, $first, $second) !important;
-    background: -moz-linear-gradient(top, $first, $second) !important;
-    background: -ms-linear-gradient(top, $first, $second) !important;
     background: linear-gradient(top, $first, $second) !important;
 }
 
