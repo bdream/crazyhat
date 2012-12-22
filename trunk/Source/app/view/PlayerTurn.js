@@ -186,7 +186,13 @@ Ext.define("CrazyHat.view.PlayerTurn", {
         var infoContainer = this.getComponent('infoContainer');
         var container = infoContainer.getComponent('containerCenter');
         var timerValue = container.getComponent('timerValue');
-        var resultString = this.minutes + ':' + this.seconds;
+        
+        // Формирует визуальное представление таймера
+        // Если одна цифра, в секундах или минутах, то добавляет '0' перед ней
+        var minutes = (this.minutes < 10) ? ('0' + this.minutes) : this.minutes;
+        var seconds = (this.seconds < 10) ? ('0' + this.seconds) : this.seconds;
+        var resultString = minutes + ':' + seconds;
+        
         timerValue.setHtml(resultString);
     },
 
