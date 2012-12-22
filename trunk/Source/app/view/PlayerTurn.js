@@ -20,58 +20,88 @@ Ext.define("CrazyHat.view.PlayerTurn", {
         cls: 'playerTurncls',
         items: [
             {
-                itemId: 'containerRight',
+                cls: 'containerPlayerInfo',
+                itemId: 'playerInfo',
                 xtype: 'container',
                 items: [
-                    // Количество слов в шляпе (надпись)
+                    // Текущий игрок (надпись)
                     {
-                        cls: 'top',
+                        cls: 'playerLabel',
                         xtype: 'label',
                         itemId: 'wordsInHatLabel',
-                        html: 'Words in Hat:'
+                        html: 'Player:'
                     },
-                    // Количество слов в шляпе
+                    // Текущий игрок
                     {
-                        cls: 'bottom',
+                        cls: 'playerValue',
                         xtype: 'label',
                         itemId: 'wordsInHatValue',
-                        html: '0'
+                        html: 'CurrentPlayer'
                     }
                 ]
             },
             {
-                itemId: 'containerCenter',
+                itemId: 'infoContainer',
                 xtype: 'container',
                 items: [
-                    // Таймер
                     {
-                        cls: 'topCenter',
-                        itemId: 'timerValue',
-                        xtype: 'label',
-                        html: '00:00'                                
-                    }
-                ]
-            },
-            {
-                itemId: 'containerLeft',
-                xtype: 'container',
-                items: [
-                    // Количество очков игрока (надпись)
-                    {
-                        cls: 'top',
-                        xtype: 'label',
-                        itemId: 'scoreLabel',
-                        html: 'Score:'
+                        cls: 'containerWordsInHat',
+                        itemId: 'containerRight',
+                        xtype: 'container',
+                        items: [
+                            // Количество слов в шляпе (надпись)
+                            {
+                                cls: 'topWordsInHat',
+                                xtype: 'label',
+                                itemId: 'wordsInHatLabel',
+                                html: 'Words in Hat:'
+                            },
+                            // Количество слов в шляпе
+                            {
+                                cls: 'bottomWordsInHat',
+                                xtype: 'label',
+                                itemId: 'wordsInHatValue',
+                                html: '0'
+                            }
+                        ]
                     },
-                    // Количество очков игрока
                     {
-                        cls: 'bottom',
-                        xtype: 'label',
-                        itemId: 'scoreValue',
-                        html: '0'
+                        cls: 'containerTimer',
+                        itemId: 'containerCenter',
+                        xtype: 'container',
+                        items: [
+                            // Таймер
+                            {
+                                cls: 'topCenter',
+                                itemId: 'timerValue',
+                                xtype: 'label',
+                                html: '00:00'                                
+                            }
+                        ]
                     },
+                    {
+                        cls: 'containerScore',
+                        itemId: 'containerLeft',
+                        xtype: 'container',
+                        items: [
+                            // Количество очков игрока (надпись)
+                            {
+                                cls: 'topScore',
+                                xtype: 'label',
+                                itemId: 'scoreLabel',
+                                html: 'Score:'
+                            },
+                            // Количество очков игрока
+                            {
+                                cls: 'bottomScore',
+                                xtype: 'label',
+                                itemId: 'scoreValue',
+                                html: '0'
+                            },
+                        ]
+                    }, 
                 ]
-            },           
+            },          
             // Слово для объяснения
             {
                 xtype: 'label',
@@ -106,14 +136,16 @@ Ext.define("CrazyHat.view.PlayerTurn", {
 
     // Устанавливает количество слов в шляпе
     setWordsInHat: function(count) {
-        var container  = this.getComponent('containerRight');
+        var infoContainer = this.getComponent('infoContainer');
+        var container  = infoContainer.getComponent('containerRight');
         var wordsInHatValue = container.getComponent('wordsInHatValue');
         wordsInHatValue.setHtml(count);
     },
 
     // Устанавливает количество очков у игрока
     setPlayerScore: function(count) {
-        var container  = this.getComponent('containerLeft');
+        var infoContainer = this.getComponent('infoContainer');
+        var container  = infoContainer.getComponent('containerLeft');
         var scoreValue = container.getComponent('scoreValue');
         scoreValue.setHtml(count);
     },
@@ -143,7 +175,8 @@ Ext.define("CrazyHat.view.PlayerTurn", {
     
     // Функция обновляет таймер
     updateTimer: function(){
-        var container = this.getComponent('containerCenter');
+        var infoContainer = this.getComponent('infoContainer');
+        var container = infoContainer.getComponent('containerCenter');
         var timerValue = container.getComponent('timerValue');
         var resultString = this.minutes + ':' + this.seconds;
         timerValue.setHtml(resultString);
