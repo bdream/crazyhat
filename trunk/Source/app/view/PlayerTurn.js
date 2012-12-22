@@ -41,6 +41,7 @@ Ext.define("CrazyHat.view.PlayerTurn", {
                 ]
             },
             {
+                cls: 'infoContainer',
                 itemId: 'infoContainer',
                 xtype: 'container',
                 items: [
@@ -101,13 +102,20 @@ Ext.define("CrazyHat.view.PlayerTurn", {
                         ]
                     }, 
                 ]
-            },          
-            // Слово для объяснения
+            },
             {
-                xtype: 'label',
-                itemId: 'currenWordValue',
-                centered: true,
-                html: 'Current word'                            
+                cls: 'containerCurrentWord',
+                itemId: 'containerCurrentWord',
+                xtype: 'container',
+                items: [
+                    // Слово для объяснения
+                    {
+                        xtype: 'label',
+                        itemId: 'currenWordValue',
+                        centered: true,
+                        html: 'Current word'                            
+                    }
+                ]
             }
         ]
     },
@@ -152,7 +160,8 @@ Ext.define("CrazyHat.view.PlayerTurn", {
     
     // Устанавливает текущее слово для обсуждения
     setCurrentWord: function(word){
-        var currenWordValue = this.getComponent('currenWordValue');
+        var containerCurrentWord = this.getComponent('containerCurrentWord');
+        var currenWordValue = containerCurrentWord.getComponent('currenWordValue');
         currenWordValue.setHtml(word);
     },
     
