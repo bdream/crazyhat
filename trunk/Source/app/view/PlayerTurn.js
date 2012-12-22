@@ -117,34 +117,32 @@ Ext.define("CrazyHat.view.PlayerTurn", {
 
     // Функция запускает таймер
     runTimer: function () {
-        this.countDown();
+        this.countDown(this);
     },
     
     // Функция уменьшает значение таймера на секунду
-    countDown: function(){
+    countDown: function(scope){
         
-        if (this.seconds < 1 && this.minutes > 0) {
-            this.minutes -= 1;
-            this.seconds = 60;
+        if (scope.seconds < 1 && scope.minutes > 0) {
+            scope.minutes--;
+            scope.seconds = 60;
         }
         
         // Когда время время закончилось, возбуждает событие
-        if (this.minutes == 0 && this.seconds == 1) {
+        if (scope.minutes == 0 && scope.seconds == 1) {
             // 'timeout' event rising
-            this.fireEvent('timeOut');
+            scope.fireEvent('timeOut');
             return;
         }
             
-        this.seconds -= 1;
-        
-        alert(this.minutes + ':' + this.seconds);
+        scope.seconds--;
         
         // Обновляет представление таймера
-        this.updateTimer();
+        scope.updateTimer();
 
-        var countDown = this.countDown;
+        var countDown = scope.countDown;
         var task = Ext.create('Ext.util.DelayedTask', function(){
-            countDown();
+            countDown(scope);
         });
         task.delay(1000);     
     }
