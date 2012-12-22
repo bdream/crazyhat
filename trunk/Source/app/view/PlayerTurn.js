@@ -16,40 +16,62 @@ Ext.define("CrazyHat.view.PlayerTurn", {
     ],
 
     config: {
+        id: 'playerTurn',
+        cls: 'playerTurncls',
         items: [
-            // Количество слов в шляпе (надпись)
             {
-                xtype: 'label',
-                itemId: 'wordsInHatLabel',
-                html: 'Words in Hat:'
+                itemId: 'containerRight',
+                xtype: 'container',
+                items: [
+                    // Количество слов в шляпе (надпись)
+                    {
+                        cls: 'top',
+                        xtype: 'label',
+                        itemId: 'wordsInHatLabel',
+                        html: 'Words in Hat:'
+                    },
+                    // Количество слов в шляпе
+                    {
+                        cls: 'bottom',
+                        xtype: 'label',
+                        itemId: 'wordsInHatValue',
+                        html: '0'
+                    }
+                ]
             },
-            // Количество слов в шляпе
             {
-                xtype: 'label',
-                itemId: 'wordsInHatValue',
-                html: '0'
+                itemId: 'containerCenter',
+                xtype: 'container',
+                items: [
+                    // Таймер
+                    {
+                        cls: 'topCenter',
+                        itemId: 'timerValue',
+                        xtype: 'label',
+                        html: '00:00'                                
+                    }
+                ]
             },
-            
-            // Количество очков игрока (надпись)
             {
-                xtype: 'label',
-                itemId: 'scoreLabel',
-                html: 'Score:'
-            },
-            // Количество очков игрока
-            {
-                xtype: 'label',
-                itemId: 'scoreValue',
-                html: '0'
-            },
-            
-            // Таймер
-            {
-                xtype: 'label',
-                itemId: 'timerValue',
-                html: '00:00'                                
-            },
-            
+                itemId: 'containerLeft',
+                xtype: 'container',
+                items: [
+                    // Количество очков игрока (надпись)
+                    {
+                        cls: 'top',
+                        xtype: 'label',
+                        itemId: 'scoreLabel',
+                        html: 'Score:'
+                    },
+                    // Количество очков игрока
+                    {
+                        cls: 'bottom',
+                        xtype: 'label',
+                        itemId: 'scoreValue',
+                        html: '0'
+                    },
+                ]
+            },           
             // Слово для объяснения
             {
                 xtype: 'label',
@@ -84,13 +106,15 @@ Ext.define("CrazyHat.view.PlayerTurn", {
 
     // Устанавливает количество слов в шляпе
     setWordsInHat: function(count) {
-        var wordsInHatValue = this.getComponent('wordsInHatValue');
+        var container  = this.getComponent('containerRight');
+        var wordsInHatValue = container.getComponent('wordsInHatValue');
         wordsInHatValue.setHtml(count);
     },
 
     // Устанавливает количество очков у игрока
     setPlayerScore: function(count) {
-        var scoreValue = this.getComponent('scoreValue');
+        var container  = this.getComponent('containerLeft');
+        var scoreValue = container.getComponent('scoreValue');
         scoreValue.setHtml(count);
     },
     
@@ -119,7 +143,8 @@ Ext.define("CrazyHat.view.PlayerTurn", {
     
     // Функция обновляет таймер
     updateTimer: function(){
-        var timerValue = this.getComponent('timerValue');
+        var container = this.getComponent('containerCenter');
+        var timerValue = container.getComponent('timerValue');
         var resultString = this.minutes + ':' + this.seconds;
         timerValue.setHtml(resultString);
     },
