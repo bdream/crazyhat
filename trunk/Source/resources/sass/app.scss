@@ -23,6 +23,17 @@
 @include sencha-form;
 @include sencha-msgbox;
 
+.h-clearfix:before,
+.h-clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.h-clearfix:after {
+    clear: both;
+}
+
+
 #ext-viewport {
 	padding: 1em;
 }
@@ -87,12 +98,86 @@
 			border-radius: 0 0 1em 1em !important;
 			input {
 				text-align: center !important;
+				padding-left: 2.8em !important;
 			}
 		}
 		
 	.x-field-checkbox .x-input-el::after {
-		background-position: center center !important;	
+		background-position: center center !important;
+		background-repeat: no-repeat !important;	
 		left: 50% !important;
 		margin-left: -0.8em !important;
 	}
 }
+
+
+
+
+.containerPlayerInfo {
+	color: #81a8b7;
+	text-align: center;
+	
+	.playerLabel {
+		display: inline-block;
+	}
+	
+	.playerValue {
+		display: inline-block;
+		margin: 0 0 0 10px;
+	}
+	
+	border-bottom: 2px solid #81a8b7;
+	padding-bottom: 1em;
+}
+
+.infoContainer {
+	text-align: center;
+}
+	.containerWordsInHat {
+		float: left;
+		width: 33.333%;
+	}
+
+	.containerTimer {
+		float: left;		
+		width: 33.333%;
+		.x-innerhtml {font-size: 2.938em; }
+	}
+
+	.containerScore {
+		float: left;	
+		width: 33.333%;	
+	}
+	
+	.topWordsInHat,
+	.bottomWordsInHat,
+	.topCenter,
+	.topScore,
+	.bottomScore {
+		border-bottom: .056em/*1px*/ solid #383838;
+		margin: 0 .5em;
+		position: relative;
+		padding-top: 1em;
+		
+		&::after,
+		&::before {
+			content: '';
+			display: block !important;
+			width: .056em/*1px*/ !important;
+			height: .556em/*10px*/ !important;
+			background: #383838;
+			position: absolute !important;
+			bottom: 0 !important;
+		}
+		&::after {
+			right: 0 !important;
+		}
+		&::before {
+			left: 0 !important;
+		}
+	}
+	
+	.containerCurrentWord {
+		font-size: 3em;
+		padding: 1.5em 0 0;
+	}

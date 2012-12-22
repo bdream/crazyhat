@@ -41,7 +41,7 @@ Ext.define("CrazyHat.view.PlayerTurn", {
                 ]
             },
             {
-                cls: 'infoContainer',
+                cls: 'infoContainer h-clearfix',
                 itemId: 'infoContainer',
                 xtype: 'container',
                 items: [
