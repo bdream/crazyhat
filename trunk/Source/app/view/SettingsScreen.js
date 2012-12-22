@@ -110,7 +110,8 @@ Ext.define("CrazyHat.view.SettingsScreen", {
 
         var button = new Ext.Button({
 				scope: this,
-				text: 'Далее'
+				text: 'Далее',
+                                handler: this.onButtonClick
 			});
 
         this.setItems([
@@ -119,9 +120,10 @@ Ext.define("CrazyHat.view.SettingsScreen", {
 
     },
 	
-	onButtonClick: function() {
-		this.fireEvent('buttonclick', this.localGameSettings);
-	},
+    onButtonClick: function() {
+            this.fireEvent('buttonclick', this.localGameSettings);
+    },
+    
     onUpdateRecord : function(){
 
         var gameConfig = this.getComponent('gameConfig');
