@@ -6,7 +6,8 @@ Ext.application({
     ],
 
     models: [
-        'CrazyHat.model.GameSettings'
+        'CrazyHat.model.GameSettings',
+        'CrazyHat.model.WordsStore'
     ],
 
     views: [

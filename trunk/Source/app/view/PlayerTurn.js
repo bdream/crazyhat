@@ -17,32 +17,36 @@ Ext.define("CrazyHat.view.PlayerTurn", {
 
     config: {
         items: [
-        {
-            xtype: 'label',
-            itemId: 'wordsInHat',
-            html: 'This is an item'
-        },
-        {
-            xtype: 'label',
-            itemId: 'playerScoreLabel',
-            html: 'This is player score label'
-        },
-        {
-            xtype: 'label',
-            itemId: 'timerLabel',
-            html: 'This is timer label'                                
-        }
+            // Количество слов в шляпе
+            {
+                xtype: 'label',
+                itemId: 'wordsInHat',
+                html: 'This is an item'
+            },
+            // Количество очков игрока
+            {
+                xtype: 'label',
+                itemId: 'playerScoreLabel',
+                html: 'This is player score label'
+            },
+            // Таймер
+            {
+                xtype: 'label',
+                itemId: 'timerLabel',
+                html: 'This is timer label'                                
+            },
+            // Слово для объяснения
+            {
+                xtype: 'label',
+                itemId: 'currenWordLabel',
+                centered: true,
+                html: 'Current word'                                
+            }
         ]
     },
 
     initialize : function() {
         this.callParent();
-
-        // Слово для объяснения
-        var currentWordLabel = new Ext.Label({
-            html: 'Current word',
-            centered: true
-        });
 
         // Кнопка получения следующего слова
         var buttonNextWord = new Ext.Button({
@@ -66,7 +70,6 @@ Ext.define("CrazyHat.view.PlayerTurn", {
         this.setItems([
             playerScoreLabel,
             timerLabel,
-            currentWordLabel,
             buttonNextWord
             ]);
     },
@@ -80,17 +83,23 @@ Ext.define("CrazyHat.view.PlayerTurn", {
     // Устанавливает количество слов в шляпе
     setWordsInHat: function(count) {
         var wordsInHatLabel = this.getComponent('wordsInHat');
-        resultString = "Words in Hat: " + count;
+        var resultString = "Words in Hat: " + count;
         wordsInHatLabel.setHtml(resultString);
     },
 
     // Устанавливает количество очков у игрока
     setPlayerScore: function(count) {
         var playerScoreLabel = this.getComponent('playerScoreLabel');
-        resultString = "Player's score: " + count;
+        var resultString = "Player's score: " + count;
         playerScoreLabel.setHtml(resultString);
     },
-
+    
+    // Устанавливает текущее слово для обсуждения
+    setCurrentWord: function(word){
+        var currentWordLabel = this.getComponent('currenWordLabel');
+        currentWordLabel.setHtml(word);
+    },
+    
     // Возбуждает событие нажатия на кнопку получения следующего слова
     onNextWordButtonClick: function() {
         this.fireEvent('nextWordButtonClick');
