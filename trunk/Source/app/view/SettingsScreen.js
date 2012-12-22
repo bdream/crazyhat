@@ -40,6 +40,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                         xtype: 'checkboxfield',
                         itemId : 'isTeamGame',
                         label: 'Командная игра',
+                        labelWidth: '100%',
                         checked: false,
                         listeners: {
                         check: function(scope){
@@ -117,6 +118,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                         xtype: 'checkboxfield',
                         itemId : 'isRandomTeams',
                         label: 'Случайное распределение по командам',
+                        labelWidth: '100%',
                         checked: false,
                         listeners: {
                             check: function(scope){
@@ -192,6 +194,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                     {
                         xtype: 'numberfield',
                         label: 'Время, отведенное на раунд: ',
+                        labelWidth: '100%',
                         minValue: 1,
                         maxValue: 120,
                         itemId: 'timeForRound'
@@ -199,6 +202,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                     {
                         xtype: 'numberfield',
                         label: 'Количество людей в игре: ',
+                        labelWidth: '100%',
                         minValue: 4,
                         maxValue: 30,
                         itemId: 'personsCount'
@@ -206,6 +210,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                     {
                         xtype: 'numberfield',
                         label: 'Количество слов, придумываемых игроком: ',
+                        labelWidth: '100%',
                         minValue: 1,
                         maxValue: 20,
                         itemId: 'wordsPerPerson'
@@ -213,6 +218,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                     {
                         xtype: 'numberfield',
                         label: 'Количество команд в игре: ',
+                        labelWidth: '100%',
                         minValue: 2,
                         maxValue: 15,
                         itemId: 'teamsCount'
