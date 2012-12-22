@@ -10,9 +10,11 @@ Ext.define("CrazyHat.view.SettingsScreen", {
 	
 	requires: [
 		'Ext.Msg',
-        'Ext.form.Panel',
-        'CrazyHat.model.GameSettings'
-	],
+                'Ext.form.Panel',
+                'CrazyHat.model.GameSettings',
+                'Ext.event.publisher.Dom'
+        ],
+    scope : this,
 
     localGameSettings: null,
 
@@ -27,6 +29,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
         scope: this,
         items: [
             {
+                id: "gameConfig",
                 scope: this,
                 itemId : 'gameConfig',
                 xtype: 'fieldset',
@@ -37,14 +40,154 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                         xtype: 'checkboxfield',
                         itemId : 'isTeamGame',
                         label: 'Командная игра',
-                        checked: false
+                        checked: false,
+                        listeners: {
+                        check: function(scope){
+                            //scope.parent.parent.getComponent('gameConfig').getComponent('isRandomTeams').hide();
+                            var gameConfig = scope.parent.parent.getComponent('gameConfig');
+                                                        
+                            var isTeamGame = gameConfig.getComponent('isTeamGame');
+                            var isRandomTeams = gameConfig.getComponent('isRandomTeams');
+                            var timeForRound = gameConfig.getComponent('timeForRound');
+                            var personsCount = gameConfig.getComponent('personsCount');
+                            var wordsPerPerson = gameConfig.getComponent('wordsPerPerson');
+                            var teamsCount = gameConfig.getComponent('teamsCount');
+
+                            if(isTeamGame.getChecked()){
+                                isRandomTeams.hide();
+                                timeForRound.show();
+                                personsCount.show();
+                                wordsPerPerson.show();
+                                teamsCount.hide();
+                            }
+                            else if(isRandomTeams.getChecked()){
+                                isRandomTeams.show();
+                                timeForRound.show();
+                                personsCount.hide();
+                                wordsPerPerson.show();
+                                teamsCount.hide();
+                            }
+                            else{
+                                isRandomTeams.show();
+                                timeForRound.show();
+                                personsCount.show();
+                                wordsPerPerson.show();
+                                teamsCount.show();
+                            }
+                            //scope.parent.parent.onUpdateRecord();
+                        },
+                        uncheck: function(scope){
+                            //scope.parent.parent.getComponent('gameConfig').getComponent('isRandomTeams').hide();
+                            var gameConfig = scope.parent.parent.getComponent('gameConfig');
+                                                        
+                            var isTeamGame = gameConfig.getComponent('isTeamGame');
+                            var isRandomTeams = gameConfig.getComponent('isRandomTeams');
+                            var timeForRound = gameConfig.getComponent('timeForRound');
+                            var personsCount = gameConfig.getComponent('personsCount');
+                            var wordsPerPerson = gameConfig.getComponent('wordsPerPerson');
+                            var teamsCount = gameConfig.getComponent('teamsCount');
+
+                            if(isTeamGame.getChecked()){
+                                isRandomTeams.hide();
+                                timeForRound.show();
+                                personsCount.show();
+                                wordsPerPerson.show();
+                                teamsCount.hide();
+                            }
+                            else if(isRandomTeams.getChecked()){
+                                isRandomTeams.show();
+                                timeForRound.show();
+                                personsCount.hide();
+                                wordsPerPerson.show();
+                                teamsCount.hide();
+                            }
+                            else{
+                                isRandomTeams.show();
+                                timeForRound.show();
+                                personsCount.show();
+                                wordsPerPerson.show();
+                                teamsCount.show();
+                            }
+                            //scope.parent.parent.onUpdateRecord();
+                        }
+                    }
                     },
                     {
                         scope: this,
                         xtype: 'checkboxfield',
                         itemId : 'isRandomTeams',
                         label: 'Случайное распределение по командам',
-                        checked: true
+                        checked: false,
+                        listeners: {
+                            check: function(scope){
+                                //scope.parent.parent.getComponent('gameConfig').getComponent('isRandomTeams').hide();
+                                var gameConfig = scope.parent.parent.getComponent('gameConfig');
+
+                                var isTeamGame = gameConfig.getComponent('isTeamGame');
+                                var isRandomTeams = gameConfig.getComponent('isRandomTeams');
+                                var timeForRound = gameConfig.getComponent('timeForRound');
+                                var personsCount = gameConfig.getComponent('personsCount');
+                                var wordsPerPerson = gameConfig.getComponent('wordsPerPerson');
+                                var teamsCount = gameConfig.getComponent('teamsCount');
+
+                                if(isTeamGame.getChecked()){
+                                    isRandomTeams.hide();
+                                    timeForRound.show();
+                                    personsCount.show();
+                                    wordsPerPerson.show();
+                                    teamsCount.hide();
+                                }
+                                else if(isRandomTeams.getChecked()){
+                                    isRandomTeams.show();
+                                    timeForRound.show();
+                                    personsCount.hide();
+                                    wordsPerPerson.show();
+                                    teamsCount.hide();
+                                }
+                                else{
+                                    isRandomTeams.show();
+                                    timeForRound.show();
+                                    personsCount.show();
+                                    wordsPerPerson.show();
+                                    teamsCount.show();
+                                }
+                                //scope.parent.parent.onUpdateRecord();
+                            },
+                            uncheck: function(scope){
+                                //scope.parent.parent.getComponent('gameConfig').getComponent('isRandomTeams').hide();
+                                var gameConfig = scope.parent.parent.getComponent('gameConfig');
+
+                                var isTeamGame = gameConfig.getComponent('isTeamGame');
+                                var isRandomTeams = gameConfig.getComponent('isRandomTeams');
+                                var timeForRound = gameConfig.getComponent('timeForRound');
+                                var personsCount = gameConfig.getComponent('personsCount');
+                                var wordsPerPerson = gameConfig.getComponent('wordsPerPerson');
+                                var teamsCount = gameConfig.getComponent('teamsCount');
+
+                                if(isTeamGame.getChecked()){
+                                    isRandomTeams.hide();
+                                    timeForRound.show();
+                                    personsCount.show();
+                                    wordsPerPerson.show();
+                                    teamsCount.hide();
+                                }
+                                else if(isRandomTeams.getChecked()){
+                                    isRandomTeams.show();
+                                    timeForRound.show();
+                                    personsCount.hide();
+                                    wordsPerPerson.show();
+                                    teamsCount.hide();
+                                }
+                                else{
+                                    isRandomTeams.show();
+                                    timeForRound.show();
+                                    personsCount.show();
+                                    wordsPerPerson.show();
+                                    teamsCount.show();
+                                }
+                                //scope.parent.parent.onUpdateRecord();
+                            }
+                        }
                     },
                     {
                         xtype: 'numberfield',
@@ -124,9 +267,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
             this.fireEvent('buttonclick', this.localGameSettings);
     },
     
-    onUpdateRecord : function(){
-
-        var gameConfig = this.getComponent('gameConfig');
+    onUpdateRecord : function(gameConfig){
 
         var isTeamGame = gameConfig.getComponent('isTeamGame');
         var isRandomTeams = gameConfig.getComponent('isRandomTeams');
@@ -135,6 +276,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
         var wordsPerPerson = gameConfig.getComponent('wordsPerPerson');
         var teamsCount = gameConfig.getComponent('teamsCount');
 
+        alert(isTeamGame.checked);
 
         if(isTeamGame.checked == false){
             alert("asd");
