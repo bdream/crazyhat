@@ -112,8 +112,7 @@ Ext.define("CrazyHat.view.PlayerTurn", {
                     {
                         xtype: 'label',
                         itemId: 'currenWordValue',
-                        centered: true,
-                        html: 'Current word'                            
+                        centered: true
                     }
                 ]
             }
