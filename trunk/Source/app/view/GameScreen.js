@@ -41,7 +41,7 @@ Ext.define("CrazyHat.view.GameScreen", {
             listeners: {
                 scope: this,
                 nextWordButtonClick: function(){
-                    if(wordsInHat == 12){
+                    if(wordsInHat == 13){
                         // Run timer
                         playerTurnView.runTimer(); 
                     }

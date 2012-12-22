@@ -17,30 +17,45 @@ Ext.define("CrazyHat.view.PlayerTurn", {
 
     config: {
         items: [
+            // Количество слов в шляпе (надпись)
+            {
+                xtype: 'label',
+                itemId: 'wordsInHatLabel',
+                html: 'Words in Hat:'
+            },
             // Количество слов в шляпе
             {
                 xtype: 'label',
-                itemId: 'wordsInHat',
-                html: 'This is an item'
+                itemId: 'wordsInHatValue',
+                html: '0'
+            },
+            
+            // Количество очков игрока (надпись)
+            {
+                xtype: 'label',
+                itemId: 'scoreLabel',
+                html: 'Score:'
             },
             // Количество очков игрока
             {
                 xtype: 'label',
-                itemId: 'playerScoreLabel',
-                html: 'This is player score label'
+                itemId: 'scoreValue',
+                html: '0'
             },
+            
             // Таймер
             {
                 xtype: 'label',
-                itemId: 'timerLabel',
-                html: 'This is timer label'                                
+                itemId: 'timerValue',
+                html: '00:00'                                
             },
+            
             // Слово для объяснения
             {
                 xtype: 'label',
-                itemId: 'currenWordLabel',
+                itemId: 'currenWordValue',
                 centered: true,
-                html: 'Current word'                                
+                html: 'Current word'                            
             }
         ]
     },
@@ -56,20 +71,7 @@ Ext.define("CrazyHat.view.PlayerTurn", {
             handler: this.onNextWordButtonClick
         });
 
-        // Количество угаданных слов текущего игрока
-        var playerScoreLabel = Ext.Label({
-            html: "Player's score:" + this.playerScore,
-            docked: 'top'
-        });
-
-        var timerLabel = Ext.Label({
-            html: this.timer,
-            docked: 'top'
-        });
-
         this.setItems([
-            playerScoreLabel,
-            timerLabel,
             buttonNextWord
             ]);
     },
@@ -82,22 +84,20 @@ Ext.define("CrazyHat.view.PlayerTurn", {
 
     // Устанавливает количество слов в шляпе
     setWordsInHat: function(count) {
-        var wordsInHatLabel = this.getComponent('wordsInHat');
-        var resultString = "Words in Hat: " + count;
-        wordsInHatLabel.setHtml(resultString);
+        var wordsInHatValue = this.getComponent('wordsInHatValue');
+        wordsInHatValue.setHtml(count);
     },
 
     // Устанавливает количество очков у игрока
     setPlayerScore: function(count) {
-        var playerScoreLabel = this.getComponent('playerScoreLabel');
-        var resultString = "Player's score: " + count;
-        playerScoreLabel.setHtml(resultString);
+        var scoreValue = this.getComponent('scoreValue');
+        scoreValue.setHtml(count);
     },
     
     // Устанавливает текущее слово для обсуждения
     setCurrentWord: function(word){
-        var currentWordLabel = this.getComponent('currenWordLabel');
-        currentWordLabel.setHtml(word);
+        var currenWordValue = this.getComponent('currenWordValue');
+        currenWordValue.setHtml(word);
     },
     
     // Возбуждает событие нажатия на кнопку получения следующего слова
@@ -119,9 +119,9 @@ Ext.define("CrazyHat.view.PlayerTurn", {
     
     // Функция обновляет таймер
     updateTimer: function(){
-        var timerLabel = this.getComponent('timerLabel');
+        var timerValue = this.getComponent('timerValue');
         var resultString = this.minutes + ':' + this.seconds;
-        timerLabel.setHtml(resultString);
+        timerValue.setHtml(resultString);
     },
 
     // Функция запускает таймер
