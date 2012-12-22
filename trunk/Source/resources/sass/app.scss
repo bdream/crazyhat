@@ -23,6 +23,9 @@
 @include sencha-form;
 @include sencha-msgbox;
 
+#ext-viewport {
+	padding: 1em;
+}
 
 .x-layout-card-item {
 	background: #000;
@@ -48,15 +51,48 @@
 	background: #1e738f !important;
 }
 
-.x-component-outer {
-	width: 100% !important;
-}
+
 
 #gameConfig {
 	display: block !important;
+	text-align: center;
+	
 	.x-container,
 	.x-body,
 	.x-docking-vertical {
 		display: block !important;
+	}
+	
+	.x-form-label,
+	.x-field,
+	.x-form-fieldset-inner {
+		background: none;
+		border:none;
+	}
+	
+	.x-form-fieldset-title {
+		text-align: center;
+	}
+	
+	.x-field {
+		margin: 1em 0;
+	}
+		.x-form-label {
+			background: #b1dcfe;
+			border-radius: 1em 1em 0 0 !important;
+		}
+		
+		.x-field-input {
+			background: #fff;
+			border-radius: 0 0 1em 1em !important;
+			input {
+				text-align: center !important;
+			}
+		}
+		
+	.x-field-checkbox .x-input-el::after {
+		background-position: center center !important;	
+		left: 50% !important;
+		margin-left: -0.8em !important;
 	}
 }

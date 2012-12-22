@@ -121,7 +121,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                         scope: this,
                         xtype: 'checkboxfield',
                         itemId : 'isRandomTeams',
-                        label: 'Случайное распределение по командам',
+                        label: 'Случайные команды',
                         labelWidth: '100%',
                         checked: false,
                         listeners: {
@@ -201,7 +201,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                     },
                     {
                         xtype: 'numberfield',
-                        label: 'Время, отведенное на раунд: ',
+                        label: 'Время раунда: ',
                         labelWidth: '100%',
                         value: 30,
                         minValue: 1,
@@ -218,7 +218,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                     },
                     {
                         xtype: 'numberfield',
-                        label: 'Количество людей в игре: ',
+                        label: 'Людей в игре: ',
                         labelWidth: '100%',
                         value: 4,
                         minValue: 4,
@@ -235,7 +235,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                     },
                     {
                         xtype: 'numberfield',
-                        label: 'Количество слов, придумываемых игроком: ',
+                        label: 'Слов игрока: ',
                         labelWidth: '100%',
                         value: 5,
                         minValue: 1,
@@ -252,7 +252,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                     },
                     {
                         xtype: 'numberfield',
-                        label: 'Количество команд в игре: ',
+                        label: 'Команд в игре: ',
                         labelWidth: '100%',
                         value: 2,
                         minValue: 2,
