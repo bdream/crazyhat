@@ -13,3 +13,7 @@ Ext.define('CrazyHat.model.GameSettings', {
     }
 
 });
+// Uses the User Model's Proxy
+Ext.create('Ext.data.Store', {
+    model: 'CrazyHat.model.GameSettings'
+});

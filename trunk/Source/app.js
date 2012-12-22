@@ -2,7 +2,8 @@ Ext.application({
     name: 'CrazyHat',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'CrazyHat.model.GameSettings'
     ],
 
     models: [
