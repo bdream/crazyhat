@@ -47,3 +47,16 @@
 .x-button-pressing {
 	background: #1e738f !important;
 }
+
+.x-component-outer {
+	width: 100% !important;
+}
+
+#gameConfig {
+	display: block !important;
+	.x-container,
+	.x-body,
+	.x-docking-vertical {
+		display: block !important;
+	}
+}
