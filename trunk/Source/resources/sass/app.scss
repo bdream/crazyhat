@@ -1,3 +1,13 @@
+@mixin doubleGradient($first, $second) {
+    background-color: $first;
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0, $first ), color-stop(1, $second)) !important;
+    background: -webkit-linear-gradient(top, $first, $second) !important;
+    background: -o-linear-gradient(top, $first, $second) !important;
+    background: -moz-linear-gradient(top, $first, $second) !important;
+    background: -ms-linear-gradient(top, $first, $second) !important;
+    background: linear-gradient(top, $first, $second) !important;
+}
+
 @import 'sencha-touch/default/all';
 
 // You may remove any of the following modules that you
@@ -16,4 +26,27 @@
 @include sencha-form;
 @include sencha-msgbox;
 
-// Your custom code goes here...
+
+.x-layout-card-item {
+	background: #111;
+	color: #eee;
+}
+
+.x-form-fieldset-title {
+	color: #eee;
+	text-shadow: 0 1px 0 #164a57;
+}
+
+.x-button {
+	background: #2591b8 !important;
+	color: #ddfcff;
+	border: 1px solid #268ca5 !important;
+	border-top: 0px solid #68b0c8 !important;
+	box-shadow: 0 0 3px 3px #164a57;
+	text-shadow: 0 1px 0 #164a57;
+	margin: 7px;
+}
+
+.x-button-pressing {
+	background: #1e738f !important;
+}
