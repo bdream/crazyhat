@@ -83,7 +83,7 @@ Ext.define("CrazyHat.view.GameScreen", {
             docked: 'bottom',
             scope: this,
             text: 'Go to results',
-            handler: this.onButtonClick
+            handler: this.onGameEnded
         });
 			
         this.setItems([
@@ -118,7 +118,8 @@ Ext.define("CrazyHat.view.GameScreen", {
         return this.users;
     },
 		
-    onButtonClick: function() {
-        this.fireEvent('buttonclick');
+    onGameEnded: function() {
+        var gameResults = this.users;
+        this.fireEvent('gameEnded', gameResults);
     }
 });

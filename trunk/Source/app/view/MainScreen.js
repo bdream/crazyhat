@@ -51,7 +51,7 @@ Ext.define("CrazyHat.view.MainScreen", {
         var gameScreen = Ext.create('CrazyHat.view.GameScreen', {
             listeners: {
                 scope: this,
-                buttonclick: this.onGameEnded
+                gameEnded: this.onGameEnded
             }
         });
         
@@ -62,7 +62,9 @@ Ext.define("CrazyHat.view.MainScreen", {
     },
     
     // Обрабатывает событие завершения игры
-    onGameEnded: function(){
+    onGameEnded: function(gameResults){
+        console.log(gameResults);
+        
         var resultsScreen = Ext.create('CrazyHat.view.ResultsScreen', {
             listeners: {
                 scope: this,
@@ -72,6 +74,9 @@ Ext.define("CrazyHat.view.MainScreen", {
                 }
             }
         });
+        
+        // Устанавливает результаты игры для отображения на экране
+        resultsScreen.setResults(gameResults);
         
         // Set active game results screen
         this.setActiveItem(resultsScreen);

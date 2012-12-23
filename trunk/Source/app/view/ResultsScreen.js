@@ -6,32 +6,76 @@ Events:
 */
 
 Ext.define("CrazyHat.view.ResultsScreen", {
-	extend: 'Ext.Panel',
+    extend: 'Ext.Panel',
 	
-	requires: [
-		'Ext.Msg'
-	],
+    requires: [
+    'Ext.Msg'
+    ],
 	
-	config: {
-		html: 'ResultsScreen'
-	},
-	
-	initialize : function() {
-        this.callParent();
-
-		var button = new Ext.Button({
-				scope: this,
-				text: 'Button',
-				handler: this.onButtonClick
-			});
-			
-        this.setItems([
-			button
-		]);
-
+    config: {
+        items: [
+            {
+                cls: 'gameResultsLabel',
+                xtype: 'label',
+                docked: 'top',
+                html: "Результаты игры"
+            },
+            {
+                cls: 'playerResultList',
+                itemId: 'playerResultList',
+                xtype: 'panel'
+            }
+        ]
     },
 	
-	onButtonClick: function() {
-		this.fireEvent('buttonclick');
-	}
+    initialize : function() {
+        this.callParent();
+
+        var button = new Ext.Button({
+            scope: this,
+            text: 'Button',
+            docked: 'bottom',
+            handler: this.onButtonClick
+        });
+			
+        this.setItems([
+            button
+            ]);
+
+    },
+    
+    setResults: function(userResults){
+        console.log(userResults);
+        
+        // Создает данные для отображения статистики игроков
+        var playerDataList = [];
+        for(var i in userResults){
+            var container = Ext.create('Ext.Container', {
+                cls: 'userItemContainer',
+                items:[
+                    // Имя игрока
+                    Ext.create('Ext.Label', {
+                        cls: 'playerName',
+                        html: userResults[i].data.name + ':'
+                    }),
+                    // Очки игрока
+                    Ext.create('Ext.Label', {
+                        cls: 'playerScore',
+                        html: userResults[i].data.score
+                    })
+                ]
+            });
+            
+            playerDataList.push(container);
+        }
+        
+        var playerResultList = this.getComponent('playerResultList');
+        playerResultList.setItems(playerDataList);
+        
+        
+    },
+	
+    onButtonClick: function() {
+        this.fireEvent('buttonclick');
+    }
 });
