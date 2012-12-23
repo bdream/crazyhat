@@ -55,6 +55,8 @@ Ext.define("CrazyHat.view.MainScreen", {
             }
         });
         
+        gameScreen.setGameSettings(localGameSettings.data);
+        
         // Set active game screen
         this.setActiveItem(gameScreen);
     },
