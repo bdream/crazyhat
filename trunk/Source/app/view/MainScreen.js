@@ -59,6 +59,9 @@ Ext.define("CrazyHat.view.MainScreen", {
         
         // Set active game screen
         this.setActiveItem(gameScreen);
+        
+        // Запускает игру
+        gameScreen.startGame();
     },
     
     // Обрабатывает событие завершения игры
