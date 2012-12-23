@@ -17,6 +17,7 @@ Ext.define("CrazyHat.view.EditResultsAfterPlayerTurn", {
     config:{
         items:[
             {
+                cls: 'checkboxList',
                 itemId: 'checkboxList',
                 xtype: 'panel'
             }
