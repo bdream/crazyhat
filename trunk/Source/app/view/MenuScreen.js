@@ -6,32 +6,32 @@ Events:
 */
 
 Ext.define("CrazyHat.view.MenuScreen", {
-	extend: 'Ext.Panel',
+    extend: 'Ext.Panel',
 	
-	requires: [
-		'Ext.Msg'
-	],
+    requires: [
+    'Ext.Msg'
+    ],
 	
-	config: {
-		html: 'MenuScreen',
-	},
+    config: {
+        html: 'MenuScreen'
+    },
 	
-	initialize : function() {
+    initialize : function() {
         this.callParent();
 
-		var button = new Ext.Button({
-				scope: this,
-				text: 'Button',
-				handler: this.onButtonClick
-			});
+        var button = new Ext.Button({
+            scope: this,
+            text: 'Button',
+            handler: this.onButtonClick
+        });
 			
         this.setItems([
-			button
-		]);
+            button
+            ]);
 
     },
 	
-	onButtonClick: function() {
-		this.fireEvent('buttonclick');
-	}
+    onButtonClick: function() {
+        this.fireEvent('buttonclick');
+    }
 });
