@@ -21,21 +21,21 @@ Ext.define("CrazyHat.view.PlayerTurn", {
         items: [
             {
                 cls: 'containerPlayerInfo',
-                itemId: 'playerInfo',
+                itemId: 'containerPlayerInfo',
                 xtype: 'container',
                 items: [
                     // Текущий игрок (надпись)
                     {
                         cls: 'playerLabel',
                         xtype: 'label',
-                        itemId: 'wordsInHatLabel',
-                        html: 'Player:'
+                        itemId: 'playerLabel',
+                        html: 'Игрок:'
                     },
                     // Текущий игрок
                     {
                         cls: 'playerValue',
                         xtype: 'label',
-                        itemId: 'wordsInHatValue',
+                        itemId: 'playerValue',
                         html: 'CurrentPlayer'
                     }
                 ]
@@ -147,6 +147,12 @@ Ext.define("CrazyHat.view.PlayerTurn", {
         var container  = infoContainer.getComponent('containerRight');
         var wordsInHatValue = container.getComponent('wordsInHatValue');
         wordsInHatValue.setHtml(count);
+    },
+    
+    setPlayerName: function(name){
+        var infoContainer = this.getComponent('containerPlayerInfo');
+        var scoreValue = infoContainer.getComponent('playerValue');
+        scoreValue.setHtml(name);
     },
 
     // Устанавливает количество очков у игрока

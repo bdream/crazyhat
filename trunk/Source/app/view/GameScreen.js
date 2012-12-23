@@ -80,7 +80,7 @@ Ext.define("CrazyHat.view.GameScreen", {
         // # Настраивает форму для текущего хода
         var firstPlayer = this.getNextPlayer()
         // Имя текущего пользователя
-        // TODO: playerTurnView.setPlayerName(firstPlayer.name);
+        this.currentTurnView.setPlayerName(firstPlayer.data.name);
         // Очки, набранные игроком
         this.currentTurnView.setPlayerScore(firstPlayer.score);
         // Количество слов в шляпе
@@ -148,7 +148,7 @@ Ext.define("CrazyHat.view.GameScreen", {
                     // # Настраивает форму для текущего хода
                     var currentPlayer = this.getNextPlayer();
                     // Имя текущего пользователя
-                    // TODO: playerTurnView.setPlayerName(firstPlayer.name);
+                    this.currentTurnView.setPlayerName(currentPlayer.data.name);
                     // Очки, набранные игроком
                     this.currentTurnView.setPlayerScore(currentPlayer.score);
                     // Количество слов в шляпе
