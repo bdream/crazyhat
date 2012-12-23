@@ -75,26 +75,30 @@ Ext.define("CrazyHat.view.GameScreen", {
     // Запускает игру
     startGame: function(){
         // # Создание первого экрана для игры
-        var playerTurnView = this.createCurrentPlayerTurnView();
+        this.currentTurnView = this.createCurrentPlayerTurnView();
         
-        // # Настраивает форму для начала игры
+        // # Настраивает форму для текущего хода
         var firstPlayer = this.getNextPlayer()
         // Имя текущего пользователя
         // TODO: playerTurnView.setPlayerName(firstPlayer.name);
         // Очки, набранные игроком
-        playerTurnView.setPlayerScore(firstPlayer.score);
+        this.currentTurnView.setPlayerScore(firstPlayer.score);
         // Количество слов в шляпе
         var wordsInHat = this.wordsStore.getWordsCount();
-        playerTurnView.setWordsInHat(wordsInHat);
+        this.currentTurnView.setWordsInHat(wordsInHat);
         // Таймер
-        playerTurnView.setTimer(this.time.minutes, this.time.seconds);
+        this.currentTurnView.setTimer(this.time.minutes, this.time.seconds);
         
         // Устанавливает активной вкладку с игрой
-        this.setActiveItem(playerTurnView);
+        this.setActiveItem(this.currentTurnView);
     },
     
+    currentTurnView: null,
+    
+    currentTurnResultView: null,
+    
     // Создает экран хода игрока
-    createCurrentPlayerTurnView: function(){
+    createCurrentPlayerTurnView: function(oldEditResultsAfterPlayerTurnView){
         var playerTurnView = Ext.create('CrazyHat.view.PlayerTurn',{
             listeners: {
                 scope: this,
@@ -111,13 +115,15 @@ Ext.define("CrazyHat.view.GameScreen", {
                     playerTurnView.setCurrentWord(currentWord);
                 },
                 timeOut: function(){
-                    var editResultsAfterPlayerTurnView = this.createEditResultsAfterPlayerTurnView();
+                    /* Уничтожает старую форму редактирования угаданных слов
+                    if(oldEditResultsAfterPlayerTurnView != null)
+                        oldEditResultsAfterPlayerTurnView.destroy();*/
+                    
+                    var editResultsAfterPlayerTurnView = this.createEditResultsAfterPlayerTurnView(playerTurnView);
                     
                     // TODO: Передать список угаданных слов в форму с результатами текущего хода
                     
                     this.setActiveItem(editResultsAfterPlayerTurnView);
-                    
-                    playerTurnView.destroy();
                 }
             }
         });
@@ -126,7 +132,7 @@ Ext.define("CrazyHat.view.GameScreen", {
     },
     
     // Создает экран результатов хода игрока
-    createEditResultsAfterPlayerTurnView: function(){
+    createEditResultsAfterPlayerTurnView: function(oldPlayerTurnView){
         var editResultsAfterPlayerTurnView = Ext.create('CrazyHat.view.EditResultsAfterPlayerTurn',{
             listeners: {
                 scope: this,
@@ -136,12 +142,26 @@ Ext.define("CrazyHat.view.GameScreen", {
                     
                     // TODO: Увеличить количество очков текущего игрока
                     
-                    var playerTurnView = this.createCurrentPlayerTurnView();
+                    /*
+                    // Уничтожает старую форму хода игрока
+                    if(oldPlayerTurnView != null)
+                        oldPlayerTurnView.destroy();
+                    */
+                   
+                    // # Настраивает форму для текущего хода
+                    var currentPlayer = this.getNextPlayer()
+                    // Имя текущего пользователя
+                    // TODO: playerTurnView.setPlayerName(firstPlayer.name);
+                    // Очки, набранные игроком
+                    this.currentTurnView.setPlayerScore(currentPlayer.score);
+                    // Количество слов в шляпе
+                    var wordsInHat = this.wordsStore.getWordsCount();
+                    this.currentTurnView.setWordsInHat(wordsInHat);
+                    // Таймер
+                    this.currentTurnView.setTimer(this.time.minutes, this.time.seconds);
                     
                     // Set active game preparing screen
-                    this.setActiveItem(playerTurnView);
-                    
-                    editResultsAfterPlayerTurnView.destroy();
+                    this.setActiveItem(this.currentTurnView);
                 }
             }
         });
