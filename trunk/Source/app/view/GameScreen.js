@@ -125,11 +125,14 @@ Ext.define("CrazyHat.view.GameScreen", {
                     }
                 },
                 timeOut: function(){
-                    var editResultsAfterPlayerTurnView = this.createEditResultsAfterPlayerTurnView(playerTurnView);
+                    this.currentTurnResultView = this.createEditResultsAfterPlayerTurnView(playerTurnView);
                     
-                    // TODO: Передать список угаданных слов в форму с результатами текущего хода
+                    // Передает список угаданных слов в форму с результатами текущего хода
+                    this.currentTurnResultView.setWords(this.playerTurnScoredWords);
+                    // Очищает список слов
+                    this.playerTurnScoredWords = [];
                     
-                    this.setActiveItem(editResultsAfterPlayerTurnView);
+                    this.setActiveItem(this.currentTurnResultView);
                 }
             }
         });

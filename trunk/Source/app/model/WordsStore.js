@@ -36,11 +36,14 @@ Ext.define('CrazyHat.model.WordsStore',{
     },
     
     // Вынимает из списка слов текущее слово
-    popCurrentWord: function(){
+    popCurrentWord: function() {
         if(this.currentWordIndex != null){
-            this.wordList.splice(this.currentWordIndex, 1);
-            this.currentWordIndex = null;  
+            var currentWord = this.wordList.splice(this.currentWordIndex, 1);
+            this.currentWordIndex = null;
+            return currentWord;
         }
+        
+        return null;
     },
     
     // Возвращает количество слов

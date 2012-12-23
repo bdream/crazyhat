@@ -19,7 +19,8 @@ Ext.define("CrazyHat.view.EditResultsAfterPlayerTurn", {
             {
                 cls: 'checkboxList',
                 itemId: 'checkboxList',
-                xtype: 'panel'
+                xtype: 'panel',
+                autoDestroy: true
             }
         ]
     },
@@ -44,23 +45,25 @@ Ext.define("CrazyHat.view.EditResultsAfterPlayerTurn", {
     },
     
     // Список checkboxes
-    checkboxes: [
-        new Ext.create('Ext.field.Checkbox',{
-            cls: 'explanationWord',
-            label: 'Картошка',
-            checked: true
-        }),
-        new Ext.create('Ext.field.Checkbox',{
-            cls: 'explanationWord',
-            label: 'Ложка',
-            checked: true
-        }),
-        new Ext.create('Ext.field.Checkbox',{
-            cls: 'explanationWord',
-            label: 'Ручка',
-            checked: true
-        })
-    ],
+    checkboxes: [],
+    
+    setWords: function(words){
+        this.checkboxes = [];
+        for(var wordIndex in words){
+            console.log(words[wordIndex]);
+            var currentWord = Ext.create('Ext.field.Checkbox',{
+                cls: 'explanationWord',
+                label: words[wordIndex],
+                checked: true
+            });
+            
+            this.checkboxes.push(currentWord);   
+        }
+        
+        var checkboxList = this.getComponent('checkboxList');
+        checkboxList.removeAll(false, false);
+        checkboxList.add(this.checkboxes);
+    },
     
     // Возвращает количество выделенных элементов
     // (количество правильно объясненных слов)
