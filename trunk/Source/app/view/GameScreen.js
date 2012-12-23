@@ -42,7 +42,7 @@ Ext.define("CrazyHat.view.GameScreen", {
         
         // Создает пользователей для игры
         var users = [];
-        for(var i = 0; i <= countUsers; i++){
+        for(var i = 0; i < countUsers; i++){
             var newUser = Ext.create('CrazyHat.model.Player',{
                 name: 'Игрок № ' + (i+1)
             });

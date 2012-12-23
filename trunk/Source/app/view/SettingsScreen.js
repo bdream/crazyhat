@@ -215,7 +215,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                 itemId: 'timeForRound',
                 listeners: {
                     change: function(scope){
-                        var gameConfig = scope.parent.parent.getComponent('personsCount');
+                        var gameConfig = scope.parent.parent.getComponent('gameConfig');
                         var timeForRound = gameConfig.getComponent('timeForRound');
                                 
                         scope.parent.parent.timeForRound = timeForRound.getValue();
@@ -313,6 +313,6 @@ Ext.define("CrazyHat.view.SettingsScreen", {
             teamsCount: this.teamsCount
         });
                     
-        this.fireEvent('buttonclick', this.localGameSettings);
+        this.fireEvent('buttonclick', gameSettings);
     }
 });
