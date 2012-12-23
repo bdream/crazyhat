@@ -13,6 +13,10 @@ Ext.define("CrazyHat.view.ResultsScreen", {
     ],
 	
     config: {
+        scrollable: {
+            direction: 'vertical'
+        },
+        
         items: [
             {
                 cls: 'gameResultsLabel',

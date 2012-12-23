@@ -16,6 +16,10 @@ Ext.define("CrazyHat.view.PlayerTurn", {
     ],
 
     config: {
+        scrollable: {
+            direction: 'vertical'
+        },
+        
         id: 'playerTurn',
         cls: 'playerTurncls',
         items: [

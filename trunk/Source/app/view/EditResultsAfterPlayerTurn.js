@@ -15,6 +15,10 @@ Ext.define("CrazyHat.view.EditResultsAfterPlayerTurn", {
     ],
     
     config:{
+        scrollable: {
+            direction: 'vertical'
+        },
+        
         items:[
             {
                 cls: 'checkboxList',
@@ -28,6 +32,11 @@ Ext.define("CrazyHat.view.EditResultsAfterPlayerTurn", {
     initialize : function() {
         this.callParent();
         
+        var wordsLabel = Ext.create('Ext.Label',{
+            docked: 'top',
+            html: '<b>Объясненные слова:</b>'
+        });
+        
         var checkboxList = this.getComponent('checkboxList');
         checkboxList.setItems(this.checkboxes);
         
@@ -39,6 +48,7 @@ Ext.define("CrazyHat.view.EditResultsAfterPlayerTurn", {
         });
 
         this.setItems([
+            wordsLabel,
             checkboxList,
             button
         ]);
