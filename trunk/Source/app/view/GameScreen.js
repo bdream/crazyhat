@@ -17,22 +17,6 @@ Ext.define("CrazyHat.view.GameScreen", {
             type: 'card'
         }
     },
-	
-    initialize : function() {
-        this.callParent();
-        	
-        // Button to debug
-        var button = new Ext.Button({
-            docked: 'bottom',
-            scope: this,
-            text: 'Go to results',
-            handler: this.onGameEnded
-        });
-			
-        this.setItems([
-            button
-            ]);
-    },
     
     // Хранилище слов
     wordsStore: null,
@@ -158,12 +142,20 @@ Ext.define("CrazyHat.view.GameScreen", {
         var editResultsAfterPlayerTurnView = Ext.create('CrazyHat.view.EditResultsAfterPlayerTurn',{
             listeners: {
                 scope: this,
-                buttonclick: function(){
+                buttonclick: function(){ 
                     // Получает количество правильно объясненных слов
                     var correctExplanationWords = editResultsAfterPlayerTurnView.getCountCheckedWords();
-                    
                     // Увеличивает количество очков текущего игрока
                     this.increaseCurrentPlayerScore(correctExplanationWords)
+                   
+                    // Если в хранилище нет слов, то переходит к экрану результатов
+                    var countWordsInHat = this.wordsStore.getWordsCount();
+                    if(countWordsInHat <= 0){
+                        // Вызывает метод завершения игры
+                        this.gameEnded();
+                        return;
+                    }
+                   
                    
                     // # Настраивает форму для текущего хода
                     var currentPlayer = this.getNextPlayer();
@@ -234,7 +226,7 @@ Ext.define("CrazyHat.view.GameScreen", {
         return this.users;
     },
 		
-    onGameEnded: function() {
+    gameEnded: function() {
         var gameResults = this.users;
         this.fireEvent('gameEnded', gameResults);
     }
