@@ -281,7 +281,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
 
         var button = new Ext.Button({
 				scope: this,
-				text: 'Далее',
+				text: 'Начать игру',
                                 handler: this.onButtonClick
 			});
 

@@ -33,7 +33,7 @@ Ext.define("CrazyHat.view.ResultsScreen", {
 
         var button = new Ext.Button({
             scope: this,
-            text: 'Button',
+            text: 'В главное меню',
             docked: 'bottom',
             handler: this.onButtonClick
         });

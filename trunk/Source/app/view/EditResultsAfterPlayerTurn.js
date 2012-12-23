@@ -33,7 +33,7 @@ Ext.define("CrazyHat.view.EditResultsAfterPlayerTurn", {
         
         var button = new Ext.Button({
             scope: this,
-            text: 'Next',
+            text: 'Далее',
             docked: 'bottom',
             handler: this.onButtonClick
         });

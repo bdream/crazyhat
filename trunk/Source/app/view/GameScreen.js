@@ -95,6 +95,9 @@ Ext.define("CrazyHat.view.GameScreen", {
                     console.log('nextWordButtonClick:' + isTurnStart);
                     // Если ход только начался
                     if(!isTurnStart){
+                        // Изменяет название кнопки
+                        playerTurnView.setNextWordButtonLabel('Отгадали');
+                        
                         // Запускает таймер
                         playerTurnView.runTimer();
                     }
@@ -146,6 +149,9 @@ Ext.define("CrazyHat.view.GameScreen", {
             listeners: {
                 scope: this,
                 buttonclick: function(){ 
+                    // Устанавливает название кнопки
+                    this.currentTurnView.setNextWordButtonLabel('Старт');
+                    
                     // Получает количество правильно объясненных слов
                     var correctExplanationWords = editResultsAfterPlayerTurnView.getCountCheckedWords();
                     // Увеличивает количество очков текущего игрока
@@ -158,7 +164,6 @@ Ext.define("CrazyHat.view.GameScreen", {
                         this.gameEnded();
                         return;
                     }
-                   
                    
                     // # Настраивает форму для текущего хода
                     var currentPlayer = this.getNextPlayer();

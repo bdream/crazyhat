@@ -124,9 +124,10 @@ Ext.define("CrazyHat.view.PlayerTurn", {
 
         // Кнопка получения следующего слова
         var buttonNextWord = new Ext.Button({
+            itemId: 'nextWordButton',
             docked: 'bottom',
             scope: this,
-            text: 'Next word',
+            text: 'Старт',
             handler: this.onNextWordButtonClick
         });
 
@@ -258,5 +259,11 @@ Ext.define("CrazyHat.view.PlayerTurn", {
         this.seconds = 0;
         
         this.isTurnStarted = false;
+    },
+    
+    // Устанавливает название кнопки вызова следующего слова
+    setNextWordButtonLabel: function(label){
+        var button = this.getComponent('nextWordButton');
+        button.setHtml(label);
     }
 });
