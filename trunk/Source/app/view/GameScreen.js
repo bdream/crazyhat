@@ -74,54 +74,8 @@ Ext.define("CrazyHat.view.GameScreen", {
     
     // Запускает игру
     startGame: function(){
-        // # Создание экранов для игры
-        
-        // Создает экран хода игрока
-        var playerTurnView = Ext.create('CrazyHat.view.PlayerTurn',{
-            listeners: {
-                scope: this,
-                nextWordButtonClick: function(){
-                    if(wordsInHat == 13){
-                        // Run timer
-                        playerTurnView.runTimer(); 
-                    }
-                                    
-                    if(wordsInHat <= 0){
-                        wordsInHat = 5;
-
-                        // Set active game preparing screen
-                        this.setActiveItem(editResultsAfterPlayerTurnView);
-                    }
-                    else{
-                        wordsInHat--;
-                    }
-
-                    playerTurnView.setWordsInHat(wordsInHat);
-                    
-                    // Берет из хранилища очередное слово и показывает его
-                    var currentWord = this.wordsStore.popRandomWord();
-                    playerTurnView.setCurrentWord(currentWord);
-                },
-                timeOut: function(){
-                    this.setActiveItem(editResultsAfterPlayerTurnView);
-                }
-            }
-        });
-        
-        // Создает экран результатов хода игрока
-        var editResultsAfterPlayerTurnView = Ext.create('CrazyHat.view.EditResultsAfterPlayerTurn',{
-            listeners: {
-                scope: this,
-                buttonclick: function(){
-                    // Получает количество правильно объясненных слов
-                    var correctExplanationWords = editResultsAfterPlayerTurnView.getCountCheckedWords();
-                    alert(correctExplanationWords);
-                    
-                    // Set active game preparing screen
-                    this.setActiveItem(playerTurnView);
-                }
-            }
-        });
+        // # Создание первого экрана для игры
+        var playerTurnView = this.createCurrentPlayerTurnView();
         
         // # Настраивает форму для начала игры
         var firstPlayer = this.getNextPlayer()
@@ -137,6 +91,62 @@ Ext.define("CrazyHat.view.GameScreen", {
         
         // Устанавливает активной вкладку с игрой
         this.setActiveItem(playerTurnView);
+    },
+    
+    // Создает экран хода игрока
+    createCurrentPlayerTurnView: function(){
+        var playerTurnView = Ext.create('CrazyHat.view.PlayerTurn',{
+            listeners: {
+                scope: this,
+                nextWordButtonClick: function() {
+                    // Запускает таймер
+                    playerTurnView.runTimer(); 
+
+                    // Устанавливает количество слов в шляпе
+                    var wordsInHatCount = this.wordsStore.getWordsCount()
+                    playerTurnView.setWordsInHat(wordsInHatCount);
+                    
+                    // Берет из хранилища очередное слово и показывает его
+                    var currentWord = this.wordsStore.popRandomWord();
+                    playerTurnView.setCurrentWord(currentWord);
+                },
+                timeOut: function(){
+                    var editResultsAfterPlayerTurnView = this.createEditResultsAfterPlayerTurnView();
+                    
+                    // TODO: Передать список угаданных слов в форму с результатами текущего хода
+                    
+                    this.setActiveItem(editResultsAfterPlayerTurnView);
+                    
+                    playerTurnView.destroy();
+                }
+            }
+        });
+        
+        return playerTurnView;
+    },
+    
+    // Создает экран результатов хода игрока
+    createEditResultsAfterPlayerTurnView: function(){
+        var editResultsAfterPlayerTurnView = Ext.create('CrazyHat.view.EditResultsAfterPlayerTurn',{
+            listeners: {
+                scope: this,
+                buttonclick: function(){
+                    // Получает количество правильно объясненных слов
+                    var correctExplanationWords = editResultsAfterPlayerTurnView.getCountCheckedWords();
+                    
+                    // TODO: Увеличить количество очков текущего игрока
+                    
+                    var playerTurnView = this.createCurrentPlayerTurnView();
+                    
+                    // Set active game preparing screen
+                    this.setActiveItem(playerTurnView);
+                    
+                    editResultsAfterPlayerTurnView.destroy();
+                }
+            }
+        });
+        
+        return editResultsAfterPlayerTurnView;
     },
     
     // Номер текущего игрока в списке игроков
