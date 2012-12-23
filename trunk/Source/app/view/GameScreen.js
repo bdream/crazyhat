@@ -91,6 +91,32 @@ Ext.define("CrazyHat.view.GameScreen", {
             button
             ]);
     },
+    
+    users: [],
+    
+    // Устанавливает настройки игры
+    setGameSettings: function(settings){
+        // Получает количество пользователей
+        console.log(settings.personsCount);
+        var countUsers = settings.personsCount;
+        
+        // Создает пользователей для игры
+        var users = [];
+        for(var i = 0; i <= countUsers; i++){
+            console.log('Игрок № ' + (i+1));
+            var newUser = Ext.create('CrazyHat.model.Player',{
+                name: 'Игрок № ' + (i+1)
+            });
+            users.push(newUser);
+        }
+        
+        this.users = users;
+    },
+    
+    // Возвращает данные о пользователях
+    getUsersInfo: function(){
+        return this.users;
+    },
 		
     onButtonClick: function() {
         this.fireEvent('buttonclick');
