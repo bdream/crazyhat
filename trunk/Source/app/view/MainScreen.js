@@ -19,38 +19,11 @@ Ext.define("CrazyHat.view.MainScreen", {
         this.callParent();
 
         this.gameSettings = Ext.create('CrazyHat.model.GameSettings');
-
-        var resultsScreen = Ext.create('CrazyHat.view.ResultsScreen', {
-            listeners: {
-                scope: this,
-                buttonclick: function(){
-                    // Set active game preparing screen
-                    this.setActiveItem(menuScreen);
-                }
-            }
-        });
-
-        var gameScreen = Ext.create('CrazyHat.view.GameScreen', {
-            listeners: {
-                scope: this,
-                buttonclick: function(){
-                    // Set active game preparing screen
-                    this.setActiveItem(resultsScreen);
-                }
-            }
-        });
 		
         var settingsScreen = Ext.create('CrazyHat.view.SettingsScreen', {
             listeners: {
                 scope: this,
-                buttonclick: function(localGameSettings){
-
-                    // применяем настройки, введенные на вьюшке SettingsScreen
-                    this.gameSettings = localGameSettings;
-
-                    // Set active game preparing screen
-                    this.setActiveItem(gameScreen);
-                }
+                buttonclick: this.onAcceptSettingsClick
             }
         });
 		
@@ -67,5 +40,38 @@ Ext.define("CrazyHat.view.MainScreen", {
         this.setItems([
             menuScreen
             ]);
+    },
+    
+    // Обработывает событие подтверждения настроек игры
+    onAcceptSettingsClick: function(localGameSettings){
+
+        // применяем настройки, введенные на вьюшке SettingsScreen
+        this.gameSettings = localGameSettings;
+
+        var gameScreen = Ext.create('CrazyHat.view.GameScreen', {
+            listeners: {
+                scope: this,
+                buttonclick: this.onGameEnded
+            }
+        });
+        
+        // Set active game screen
+        this.setActiveItem(gameScreen);
+    },
+    
+    // Обрабатывает событие завершения игры
+    onGameEnded: function(){
+        var resultsScreen = Ext.create('CrazyHat.view.ResultsScreen', {
+            listeners: {
+                scope: this,
+                buttonclick: function(){
+                    // Set active game preparing screen
+                    // this.setActiveItem(menuScreen);
+                }
+            }
+        });
+        
+        // Set active game results screen
+        this.setActiveItem(resultsScreen);
     }
 });
