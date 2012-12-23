@@ -142,10 +142,11 @@ Ext.define("CrazyHat.view.GameScreen", {
                     // Получает количество правильно объясненных слов
                     var correctExplanationWords = editResultsAfterPlayerTurnView.getCountCheckedWords();
                     
-                    // TODO: Увеличить количество очков текущего игрока
+                    // Увеличивает количество очков текущего игрока
+                    this.increaseCurrentPlayerScore(correctExplanationWords)
                    
                     // # Настраивает форму для текущего хода
-                    var currentPlayer = this.getNextPlayer()
+                    var currentPlayer = this.getNextPlayer();
                     // Имя текущего пользователя
                     // TODO: playerTurnView.setPlayerName(firstPlayer.name);
                     // Очки, набранные игроком
@@ -189,11 +190,22 @@ Ext.define("CrazyHat.view.GameScreen", {
         var playersCount = this.users.length;
         if(playersCount == nextPlayerNumber){
             nextPlayerNumber = 0;
-            this.currentPlayerNumber = nextPlayerNumber; 
         }
+        
+        // Устанавливает номер текущего игрока
+        this.currentPlayerNumber = nextPlayerNumber;
         
         // Возвращает игрока
         return this.users[nextPlayerNumber];
+    },
+    
+    // Увеличивает количество очков текущего игрока
+    increaseCurrentPlayerScore: function(newScore){
+        console.log(this.currentPlayerNumber);
+        var playerNumber = this.currentPlayerNumber;
+        console.log(this.users);
+        var currentPlayer = this.users[playerNumber];
+        currentPlayer.data.score += newScore;
     },
     
     // Возвращает данные о пользователях
