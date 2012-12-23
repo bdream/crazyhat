@@ -17,22 +17,30 @@ Ext.define('CrazyHat.model.WordsStore',{
         'Вермишель'
     ],   
     
+    currentWordIndex: null,
+    
     // Возвращает случайное слово (не удаляет его из хранилища)
-    popRandomWord: function(){
+    // Значение текущего слова устанавливается в значение случайного слова
+    getRandomWord: function(){
         var wordList = this.wordList;
         
         var wordsCount = wordList.length;
         
         // Возвращает индекс случайного слова
         var randomIndex = Math.floor(Math.random() * wordsCount);
-
-        // Возвращает это слово, удаляет его из списка слов
-        return wordList.splice(randomIndex, 1);
+        
+        this.currentWordIndex = randomIndex;
+        
+        // Возвращает это слово
+        return wordList[randomIndex];
     },
     
-    // Помещает слово обратно в хранилище
-    pushWord: function(word){
-        this.wordList.push(word);
+    // Вынимает из списка слов текущее слово
+    popCurrentWord: function(){
+        if(currentWordIndex != null){
+            wordList.splice(currentWordIndex, 1);
+            this.currentWordIndex = null;  
+        }
     },
     
     // Возвращает количество слов

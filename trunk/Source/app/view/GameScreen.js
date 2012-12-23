@@ -99,28 +99,47 @@ Ext.define("CrazyHat.view.GameScreen", {
     
     currentTurnResultView: null,
     
+    // Угаданные слова за ход игрока
+    playerTurnScoredWords: [],
+    
     // Создает экран хода игрока
     createCurrentPlayerTurnView: function(oldEditResultsAfterPlayerTurnView){
         var playerTurnView = Ext.create('CrazyHat.view.PlayerTurn',{
             listeners: {
                 scope: this,
-                nextWordButtonClick: function() {
-                    // Запускает таймер
-                    playerTurnView.runTimer(); 
-
-                    // Устанавливает количество слов в шляпе
-                    var wordsInHatCount = this.wordsStore.getWordsCount()
-                    playerTurnView.setWordsInHat(wordsInHatCount);
+                nextWordButtonClick: function(isTurnStart) {
+                    // Если ход только начался
+                    if(!isTurnStart){
+                        // Запускает таймер
+                        playerTurnView.runTimer();
+                    }
+                    // Если это продолжение хода
+                    else{
+                        // Удаляет из хранилища объясненное слово
+                        var scoredWord = this.wordsStore.popCurrentWord();
+                        // Помещает его в список угаданных за этот ход слов
+                        this.playerTurnScoredWords.push(scoredWord);
+                    }
                     
-                    // Берет из хранилища очередное слово и показывает его
-                    var currentWord = this.wordsStore.popRandomWord();
-                    playerTurnView.setCurrentWord(currentWord);
+                    // Берет количество слов в хранилище
+                    var wordsInHatCount = this.wordsStore.getWordsCount();
+                    
+                    // Если в хранилище еще есть слова
+                    if(wordsInHatCount > 0){
+                        // Берет случайное слово из хранилища
+                        var currentWord = this.wordsStore.getRandomWord();
+                        
+                        // Устанавливает количество слов в шляпе
+                        playerTurnView.setWordsInHat(wordsInHatCount);
+                        // Устанавливает текущее слово для отображения
+                        playerTurnView.setCurrentWord(currentWord);
+                    }
+                    else{
+                        // Если слова в хранилище закончились, обнуляет таймер
+                        playerTurnView.breakTimer();
+                    }
                 },
                 timeOut: function(){
-                    /* Уничтожает старую форму редактирования угаданных слов
-                    if(oldEditResultsAfterPlayerTurnView != null)
-                        oldEditResultsAfterPlayerTurnView.destroy();*/
-                    
                     var editResultsAfterPlayerTurnView = this.createEditResultsAfterPlayerTurnView(playerTurnView);
                     
                     // TODO: Передать список угаданных слов в форму с результатами текущего хода
