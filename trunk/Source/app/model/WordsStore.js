@@ -37,8 +37,8 @@ Ext.define('CrazyHat.model.WordsStore',{
     
     // Вынимает из списка слов текущее слово
     popCurrentWord: function(){
-        if(currentWordIndex != null){
-            wordList.splice(currentWordIndex, 1);
+        if(this.currentWordIndex != null){
+            this.wordList.splice(this.currentWordIndex, 1);
             this.currentWordIndex = null;  
         }
     },

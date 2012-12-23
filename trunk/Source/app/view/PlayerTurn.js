@@ -173,13 +173,19 @@ Ext.define("CrazyHat.view.PlayerTurn", {
     // Показывает находится ли форма в состоянии начала хода
     isTurnStarted: false,
     
+    setIsTurnStarted: function(value){
+        this.isTurnStarted = value;
+    },
+    
     // Возбуждает событие нажатия на кнопку получения следующего слова
     onNextWordButtonClick: function() {
         // Сохраняет текущее значение состояния формы
         var isTurnStarted = this.isTurnStarted;
+        console.log('beforenextWordButtonClick event ' + this.isTurnStarted);
         // Устанавливает, что ход уже начался
         this.isTurnStarted = true;
         
+        console.log('nextWordButtonClick event ' + isTurnStarted);
         this.fireEvent('nextWordButtonClick', isTurnStarted);
     },
     
@@ -224,7 +230,11 @@ Ext.define("CrazyHat.view.PlayerTurn", {
         }
         
         // Когда время время закончилось, возбуждает событие
-        if (scope.minutes == 0 && scope.seconds == 1) {
+        if (scope.minutes == 0 && scope.seconds <= 0) {
+            // Устанавливает значение, что ход еще не начался
+            this.isTurnStarted = false;
+            console.log(this.isTurnStarted);
+            
             // 'timeout' event rising
             scope.fireEvent('timeOut');
             return;
@@ -247,6 +257,6 @@ Ext.define("CrazyHat.view.PlayerTurn", {
         this.minutes = 0;
         this.seconds = 0;
         
-        this.isTurnStart = false;
+        this.isTurnStarted = false;
     }
 });

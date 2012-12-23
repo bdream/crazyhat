@@ -108,6 +108,7 @@ Ext.define("CrazyHat.view.GameScreen", {
             listeners: {
                 scope: this,
                 nextWordButtonClick: function(isTurnStart) {
+                    console.log('nextWordButtonClick:' + isTurnStart);
                     // Если ход только начался
                     if(!isTurnStart){
                         // Запускает таймер
@@ -178,6 +179,9 @@ Ext.define("CrazyHat.view.GameScreen", {
                     // Текущее слово (в начале хода игрока пустое)
                     this.currentTurnView.setCurrentWord('');
                     
+                    // Устанавливает значение, что ход еще не начался
+                    this.currentTurnView.setIsTurnStarted(false);
+                    
                     // Set active game preparing screen
                     this.setActiveItem(this.currentTurnView);
                 }
@@ -220,9 +224,7 @@ Ext.define("CrazyHat.view.GameScreen", {
     
     // Увеличивает количество очков текущего игрока
     increaseCurrentPlayerScore: function(newScore){
-        console.log(this.currentPlayerNumber);
         var playerNumber = this.currentPlayerNumber;
-        console.log(this.users);
         var currentPlayer = this.users[playerNumber];
         currentPlayer.data.score += newScore;
     },
