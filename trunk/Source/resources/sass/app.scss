@@ -181,3 +181,61 @@
 		font-size: 3em;
 		padding: 1.5em 0 0;
 	}
+	
+
+.gameResultsLabel {
+	color: #81a8b7;
+	text-align: center;
+	border-bottom: 2px solid #81a8b7;
+	padding-bottom: 1em;
+}
+	.playerName {
+		display: inline-block;
+		position: relative;
+		border-bottom: 1px solid #383838;
+		padding: 0 .5em;
+		
+		&::after,
+		&::before {
+			content: '';
+			display: block !important;
+			width: .056em/*1px*/ !important;
+			height: .556em/*10px*/ !important;
+			background: #383838;
+			position: absolute !important;
+			bottom: 0 !important;
+		}
+		&::after {
+			right: 0 !important;
+		}
+		&::before {
+			left: 0 !important;
+		}
+
+	}
+
+		.playerResultList {
+			padding: 1em 0 0;
+		}
+		
+			.userItemContainer {
+				margin: 1em 0 0;
+			}
+			
+			.playerScore {
+				display: inline-block;
+				margin-left: 20px;
+				background: #32ccfe;
+				padding: 4px 0 4px 10px;
+				text-align: right;
+					.x-innerhtml {
+						display: inline-block;
+						background: #f4ffff;
+						padding: 2px 3px;
+						border: 1px solid #64a9c8;
+						color: #83aece;
+						margin-right: -3px;
+					}
+			}
+			
+	
