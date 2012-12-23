@@ -66,7 +66,7 @@ Ext.define("CrazyHat.view.GameScreen", {
         // Имя текущего пользователя
         this.currentTurnView.setPlayerName(firstPlayer.data.name);
         // Очки, набранные игроком
-        this.currentTurnView.setPlayerScore(firstPlayer.score);
+        this.currentTurnView.setPlayerScore(0);
         // Количество слов в шляпе
         var wordsInHat = this.wordsStore.getWordsCount();
         this.currentTurnView.setWordsInHat(wordsInHat);
@@ -107,6 +107,8 @@ Ext.define("CrazyHat.view.GameScreen", {
                         var scoredWord = this.wordsStore.popCurrentWord();
                         // Помещает его в список угаданных за этот ход слов
                         this.playerTurnScoredWords.push(scoredWord);
+                        
+                        playerTurnView.setPlayerScore(this.playerTurnScoredWords.length);
                     }
                     
                     // Берет количество слов в хранилище
@@ -170,7 +172,7 @@ Ext.define("CrazyHat.view.GameScreen", {
                     // Имя текущего пользователя
                     this.currentTurnView.setPlayerName(currentPlayer.data.name);
                     // Очки, набранные игроком
-                    this.currentTurnView.setPlayerScore(currentPlayer.score);
+                    this.currentTurnView.setPlayerScore(0);
                     // Количество слов в шляпе
                     var wordsInHat = this.wordsStore.getWordsCount();
                     this.currentTurnView.setWordsInHat(wordsInHat);
