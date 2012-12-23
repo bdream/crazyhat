@@ -20,7 +20,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
 
     isTeamGame : false,
     isRandomTeams : false,
-    timeForRound: 30,
+    timeForRound: 20,
     personsCount : 4,
     wordsPerPerson: 5,
     teamsCount: 2,
