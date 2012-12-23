@@ -14,7 +14,9 @@ Ext.define("CrazyHat.view.MainScreen", {
     },
 
     gameSettings:null, // игровые настройки
-	
+    
+    menuScreen: null,
+    
     initialize: function(){
         this.callParent();
 
@@ -27,7 +29,7 @@ Ext.define("CrazyHat.view.MainScreen", {
             }
         });
 		
-        var menuScreen = Ext.create('CrazyHat.view.MenuScreen', {
+        this.menuScreen = Ext.create('CrazyHat.view.MenuScreen', {
             listeners: {
                 scope: this,
                 buttonclick: function(){
@@ -38,7 +40,7 @@ Ext.define("CrazyHat.view.MainScreen", {
         });
 		
         this.setItems([
-            menuScreen
+            this.menuScreen
             ]);
     },
     
@@ -73,7 +75,7 @@ Ext.define("CrazyHat.view.MainScreen", {
                 scope: this,
                 buttonclick: function(){
                     // Set active game preparing screen
-                    // this.setActiveItem(menuScreen);
+                    this.setActiveItem(this.menuScreen);
                 }
             }
         });

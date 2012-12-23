@@ -15,7 +15,7 @@ Ext.define('CrazyHat.model.WordsStore',{
         'Указатель',
         'Дорога',
         'Вермишель'
-    ],   
+    ],
     
     currentWordIndex: null,
     
@@ -49,6 +49,25 @@ Ext.define('CrazyHat.model.WordsStore',{
     // Возвращает количество слов
     getWordsCount: function(){
         return this.wordList.length;
+    },
+    
+    // Заново генерирует список слов
+    recreateWordsList: function(){
+        this.wordsList = [
+            'Линейка',
+            'Кактус',
+            'Гардемарин',
+            'Лютик',
+            'Принцесса',
+            'Иголка',
+            'Шапка',
+            'Кастрюля',
+            'Карамель',
+            'Картуз',
+            'Указатель',
+            'Дорога',
+            'Вермишель'
+        ];
     }
 })
 
