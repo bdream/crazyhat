@@ -6,78 +6,66 @@ Contains all other Application's screens and change screens logic
 Ext.define("CrazyHat.view.MainScreen", {
     extend: 'Ext.Panel',
 	
-	config: {
-		fullscreen: true,
-		layout: {
-			type: 'card'
-		}
-	},
+    config: {
+        fullscreen: true,
+        layout: {
+            type: 'card'
+        }
+    },
 
     gameSettings:null, // игровые настройки
 	
-	initialize: function(){
-		this.callParent();
+    initialize: function(){
+        this.callParent();
 
         this.gameSettings = Ext.create('CrazyHat.model.GameSettings');
 
-		var resultsScreen = Ext.create('CrazyHat.view.ResultsScreen', {
-			listeners: {
-				scope: this,
-				buttonclick: function(){
-					// Set active game preparing screen
-					this.setActiveItem(menuScreen);
-				}
-			}
-		});
+        var resultsScreen = Ext.create('CrazyHat.view.ResultsScreen', {
+            listeners: {
+                scope: this,
+                buttonclick: function(){
+                    // Set active game preparing screen
+                    this.setActiveItem(menuScreen);
+                }
+            }
+        });
 
-		var gameScreen = Ext.create('CrazyHat.view.GameScreen', {
-			listeners: {
-				scope: this,
-				buttonclick: function(){
-					// Set active game preparing screen
-					this.setActiveItem(resultsScreen);
-				}
-			}
-		});
+        var gameScreen = Ext.create('CrazyHat.view.GameScreen', {
+            listeners: {
+                scope: this,
+                buttonclick: function(){
+                    // Set active game preparing screen
+                    this.setActiveItem(resultsScreen);
+                }
+            }
+        });
 		
-/*
-		var gamePreparingScreen = Ext.create('CrazyHat.view.GameScreen.GamePreparingScreen', {
-			listeners: {
-				scope: this,
-				buttonclick: function(){
-					// Set active game preparing screen
-					this.setActiveItem(gameScreen);
-				}
-			}
-		});
-*/
-		
-		var settingsScreen = Ext.create('CrazyHat.view.SettingsScreen', {
-			listeners: {
-				scope: this,
-				buttonclick: function(localGameSettings){
+        var settingsScreen = Ext.create('CrazyHat.view.SettingsScreen', {
+            listeners: {
+                scope: this,
+                buttonclick: function(localGameSettings){
 
                     // применяем настройки, введенные на вьюшке SettingsScreen
                     this.gameSettings = localGameSettings;
 
-					// Set active game preparing screen
-					this.setActiveItem(gameScreen);
-				}
-			}
-		});
+                    // Set active game preparing screen
+                    this.setActiveItem(gameScreen);
+                }
+            }
+        });
 		
-		var menuScreen = Ext.create('CrazyHat.view.MenuScreen', {
-			listeners: {
-				scope: this,
-				buttonclick: function(){
-					// Set active game preparing screen
-					this.setActiveItem(settingsScreen);
-				}
-			}
-		});
+        var menuScreen = Ext.create('CrazyHat.view.MenuScreen', {
+            listeners: {
+                scope: this,
+                buttonclick: function(){
+                    // Set active game preparing screen
+                    this.setActiveItem(settingsScreen);
+                }
+            }
+        });
 		
-		this.setItems([
-			menuScreen
-		]);
-	}
+        this.setItems([
+            menuScreen
+            ]);
+    }
 });

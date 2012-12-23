@@ -17,6 +17,5 @@ Ext.define('CrazyHat.model.Player', {
             {name: 'score',   type: 'int', defaultValue: 0}
         ]
     }
-
 });
 
