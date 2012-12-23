@@ -28,6 +28,10 @@ Ext.define("CrazyHat.view.GameScreen", {
             listeners: {
                 scope: this,
                 buttonclick: function(){
+                    // Получает количество правильно объясненных слов
+                    var correctExplanationWords = editResultsAfterPlayerTurnView.getCountCheckedWords();
+                    alert(correctExplanationWords);
+                    
                     // Set active game preparing screen
                     this.setActiveItem(playerTurnView);
                 }
