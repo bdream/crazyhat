@@ -88,6 +88,8 @@ Ext.define("CrazyHat.view.GameScreen", {
         this.currentTurnView.setWordsInHat(wordsInHat);
         // Таймер
         this.currentTurnView.setTimer(this.time.minutes, this.time.seconds);
+        // Текущее слово (в начале игры пустое)
+        this.currentTurnView.setCurrentWord('');
         
         // Устанавливает активной вкладку с игрой
         this.setActiveItem(this.currentTurnView);
@@ -141,12 +143,6 @@ Ext.define("CrazyHat.view.GameScreen", {
                     var correctExplanationWords = editResultsAfterPlayerTurnView.getCountCheckedWords();
                     
                     // TODO: Увеличить количество очков текущего игрока
-                    
-                    /*
-                    // Уничтожает старую форму хода игрока
-                    if(oldPlayerTurnView != null)
-                        oldPlayerTurnView.destroy();
-                    */
                    
                     // # Настраивает форму для текущего хода
                     var currentPlayer = this.getNextPlayer()
@@ -159,6 +155,8 @@ Ext.define("CrazyHat.view.GameScreen", {
                     this.currentTurnView.setWordsInHat(wordsInHat);
                     // Таймер
                     this.currentTurnView.setTimer(this.time.minutes, this.time.seconds);
+                    // Текущее слово (в начале хода игрока пустое)
+                    this.currentTurnView.setCurrentWord('');
                     
                     // Set active game preparing screen
                     this.setActiveItem(this.currentTurnView);
