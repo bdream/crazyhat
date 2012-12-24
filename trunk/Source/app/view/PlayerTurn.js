@@ -59,7 +59,7 @@ Ext.define("CrazyHat.view.PlayerTurn", {
                                 cls: 'topWordsInHat',
                                 xtype: 'label',
                                 itemId: 'wordsInHatLabel',
-                                html: 'Words&nbsp;in&nbsp;Hat:'
+                                html: 'Слов&nbsp;в&nbsp;шляпе'
                             },
                             // Количество слов в шляпе
                             {
@@ -94,7 +94,7 @@ Ext.define("CrazyHat.view.PlayerTurn", {
                                 cls: 'topScore',
                                 xtype: 'label',
                                 itemId: 'scoreLabel',
-                                html: 'Score:'
+                                html: 'Счет'
                             },
                             // Количество очков игрока
                             {
