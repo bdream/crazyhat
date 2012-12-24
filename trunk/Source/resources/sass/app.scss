@@ -141,7 +141,7 @@
 	.containerTimer {
 		float: left;		
 		width: 33.333%;
-		.x-innerhtml {font-size: 2.938em; }
+		.x-innerhtml {font-size: 2em; }
 	}
 
 	.containerScore {
@@ -177,10 +177,29 @@
 		}
 	}
 	
+	.topWordsInHat {
+		font-size: .75em;
+		line-height: 2;
+		border-bottom: 1px solid #383838;
+	}
+	
 	.containerCurrentWord {
 		font-size: 3em;
 		padding: 1.5em 0 0;
 	}
+	
+	
+	
+@media screen and (min-width: 481px)  {
+	.topWordsInHat {
+		font-size: 1em;
+		line-height: normal;
+		border-bottom: .056em/*1px*/ solid #383838;
+	}
+	.containerTimer {
+		.x-innerhtml {font-size: 2.938em; }
+	}
+}
 	
 
 .gameResultsLabel {

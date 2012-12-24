@@ -64,6 +64,7 @@ Ext.define("CrazyHat.view.EditResultsAfterPlayerTurn", {
             var currentWord = Ext.create('Ext.field.Checkbox',{
                 cls: 'explanationWord',
                 label: words[wordIndex],
+                labelWidth: '70%',
                 checked: true
             });
             
