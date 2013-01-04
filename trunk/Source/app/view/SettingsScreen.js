@@ -18,12 +18,9 @@ Ext.define("CrazyHat.view.SettingsScreen", {
 
     localGameSettings: null,
 
-    isTeamGame : false,
-    isRandomTeams : false,
     timeForRound: 20,
     personsCount : 4,
     wordsPerPerson: 5,
-    teamsCount: 2,
 
     config: {
         
@@ -42,170 +39,6 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                 
             items: [
             {
-                scope: this,
-                xtype: 'checkboxfield',
-                itemId : 'isTeamGame',
-                label: 'Командная игра',
-                labelWidth: '100%',
-                checked: false,
-                listeners: {
-                    check: function(scope){
-                        //scope.parent.parent.getComponent('gameConfig').getComponent('isRandomTeams').hide();
-                        var gameConfig = scope.parent.parent.getComponent('gameConfig');
-
-                        var isTeamGame = gameConfig.getComponent('isTeamGame');
-                        var isRandomTeams = gameConfig.getComponent('isRandomTeams');
-                        var timeForRound = gameConfig.getComponent('timeForRound');
-                        var personsCount = gameConfig.getComponent('personsCount');
-                        var wordsPerPerson = gameConfig.getComponent('wordsPerPerson');
-                        var teamsCount = gameConfig.getComponent('teamsCount');
-
-                        if(isTeamGame.getChecked()){
-                            isRandomTeams.hide();
-                            timeForRound.show();
-                            personsCount.show();
-                            wordsPerPerson.show();
-                            teamsCount.hide();
-                        }
-                        else if(isRandomTeams.getChecked()){
-                            isRandomTeams.show();
-                            timeForRound.show();
-                            personsCount.hide();
-                            wordsPerPerson.show();
-                            teamsCount.hide();
-                        }
-                        else{
-                            isRandomTeams.show();
-                            timeForRound.show();
-                            personsCount.show();
-                            wordsPerPerson.show();
-                            teamsCount.show();
-                        }
-                        //scope.parent.parent.onUpdateRecord();
-
-                        scope.parent.parent.isTeamGame = true;                            
-                    },
-                    uncheck: function(scope){
-                        //scope.parent.parent.getComponent('gameConfig').getComponent('isRandomTeams').hide();
-                        var gameConfig = scope.parent.parent.getComponent('gameConfig');
-
-                        var isTeamGame = gameConfig.getComponent('isTeamGame');
-                        var isRandomTeams = gameConfig.getComponent('isRandomTeams');
-                        var timeForRound = gameConfig.getComponent('timeForRound');
-                        var personsCount = gameConfig.getComponent('personsCount');
-                        var wordsPerPerson = gameConfig.getComponent('wordsPerPerson');
-                        var teamsCount = gameConfig.getComponent('teamsCount');
-
-                        if(isTeamGame.getChecked()){
-                            isRandomTeams.hide();
-                            timeForRound.show();
-                            personsCount.show();
-                            wordsPerPerson.show();
-                            teamsCount.hide();
-                        }
-                        else if(isRandomTeams.getChecked()){
-                            isRandomTeams.show();
-                            timeForRound.show();
-                            personsCount.hide();
-                            wordsPerPerson.show();
-                            teamsCount.hide();
-                        }
-                        else{
-                            isRandomTeams.show();
-                            timeForRound.show();
-                            personsCount.show();
-                            wordsPerPerson.show();
-                            teamsCount.show();
-                        }
-                        //scope.parent.parent.onUpdateRecord();
-
-                        scope.parent.parent.isTeamGame = false;    
-                    }
-                }
-            },
-            {
-                scope: this,
-                xtype: 'checkboxfield',
-                itemId : 'isRandomTeams',
-                label: 'Случайные команды',
-                labelWidth: '100%',
-                checked: false,
-                listeners: {
-                    check: function(scope){
-                        //scope.parent.parent.getComponent('gameConfig').getComponent('isRandomTeams').hide();
-                        var gameConfig = scope.parent.parent.getComponent('gameConfig');
-
-                        var isTeamGame = gameConfig.getComponent('isTeamGame');
-                        var isRandomTeams = gameConfig.getComponent('isRandomTeams');
-                        var timeForRound = gameConfig.getComponent('timeForRound');
-                        var personsCount = gameConfig.getComponent('personsCount');
-                        var wordsPerPerson = gameConfig.getComponent('wordsPerPerson');
-                        var teamsCount = gameConfig.getComponent('teamsCount');
-
-                        if(isTeamGame.getChecked()){
-                            isRandomTeams.hide();
-                            timeForRound.show();
-                            personsCount.show();
-                            wordsPerPerson.show();
-                            teamsCount.hide();
-                        }
-                        else if(isRandomTeams.getChecked()){
-                            isRandomTeams.show();
-                            timeForRound.show();
-                            personsCount.hide();
-                            wordsPerPerson.show();
-                            teamsCount.hide();
-                        }
-                        else{
-                            isRandomTeams.show();
-                            timeForRound.show();
-                            personsCount.show();
-                            wordsPerPerson.show();
-                            teamsCount.show();
-                        }
-                        //scope.parent.parent.onUpdateRecord();
-                                                                
-                        scope.parent.parent.isRandomTeams = true;    
-                    },
-                    uncheck: function(scope){
-                        //scope.parent.parent.getComponent('gameConfig').getComponent('isRandomTeams').hide();
-                        var gameConfig = scope.parent.parent.getComponent('gameConfig');
-
-                        var isTeamGame = gameConfig.getComponent('isTeamGame');
-                        var isRandomTeams = gameConfig.getComponent('isRandomTeams');
-                        var timeForRound = gameConfig.getComponent('timeForRound');
-                        var personsCount = gameConfig.getComponent('personsCount');
-                        var wordsPerPerson = gameConfig.getComponent('wordsPerPerson');
-                        var teamsCount = gameConfig.getComponent('teamsCount');
-
-                        if(isTeamGame.getChecked()){
-                            isRandomTeams.hide();
-                            timeForRound.show();
-                            personsCount.show();
-                            wordsPerPerson.show();
-                            teamsCount.hide();
-                        }
-                        else if(isRandomTeams.getChecked()){
-                            isRandomTeams.show();
-                            timeForRound.show();
-                            personsCount.hide();
-                            wordsPerPerson.show();
-                            teamsCount.hide();
-                        }
-                        else{
-                            isRandomTeams.show();
-                            timeForRound.show();
-                            personsCount.show();
-                            wordsPerPerson.show();
-                            teamsCount.show();
-                        }
-                        //scope.parent.parent.onUpdateRecord();
-                                
-                        scope.parent.parent.isRandomTeams = false;  
-                    }
-                }
-            },
-            {
                 xtype: 'numberfield',
                 label: 'Время раунда: ',
                 labelWidth: '100%',
@@ -217,7 +50,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                     change: function(scope){
                         var gameConfig = scope.parent.parent.getComponent('gameConfig');
                         var timeForRound = gameConfig.getComponent('timeForRound');
-                                
+
                         scope.parent.parent.timeForRound = timeForRound.getValue();
                     }
                 }
@@ -255,23 +88,6 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                         scope.parent.parent.wordsPerPerson = wordsPerPerson.getValue();
                     }
                 }
-            },
-            {
-                xtype: 'numberfield',
-                label: 'Команд в игре: ',
-                labelWidth: '100%',
-                value: 2,
-                minValue: 2,
-                maxValue: 15,
-                itemId: 'teamsCount',
-                listeners: {
-                    change: function(scope){
-                        var gameConfig = scope.parent.parent.getComponent('gameConfig');
-                        var teamsCount = gameConfig.getComponent('teamsCount');
-                                
-                        scope.parent.parent.teamsCount = teamsCount.getValue();
-                    }
-                }
             }
             ]
         }
@@ -303,14 +119,10 @@ Ext.define("CrazyHat.view.SettingsScreen", {
         //alert(this.teamsCount);
             
             
-        var gameSettings = Ext.create('CrazyHat.model.GameSettings', 
-        {
-            isTeamGame: this.isTeamGame, 
-            isRandomTeams: this.isRandomTeams, 
+        var gameSettings = Ext.create('CrazyHat.model.GameSettings', {
             timeForRound: this.timeForRound, 
             wordsPerPerson: this.wordsPerPerson, 
-            personsCount: this.personsCount, 
-            teamsCount: this.teamsCount
+            personsCount: this.personsCount
         });
                     
         this.fireEvent('buttonclick', gameSettings);
