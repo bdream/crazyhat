@@ -42,7 +42,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                 xtype: 'numberfield',
                 label: 'Время раунда: ',
                 labelWidth: '100%',
-                value: 30,
+                value: 20,
                 minValue: 1,
                 maxValue: 120,
                 itemId: 'timeForRound',
@@ -111,7 +111,6 @@ Ext.define("CrazyHat.view.SettingsScreen", {
         this.setItems([
             button
             ]);
-
     },
 	
     onButtonClick: function() {
