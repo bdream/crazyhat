@@ -12,8 +12,11 @@ Ext.define("CrazyHat.view.SettingsScreen", {
     'Ext.Msg',
     'Ext.form.Panel',
     'CrazyHat.model.GameSettings',
-    'Ext.event.publisher.Dom'
+    'Ext.event.publisher.Dom',
+    'Ext.form.FieldSet',
+    'Ext.field.Number'
     ],
+    
     scope : this,
 
     localGameSettings: null,

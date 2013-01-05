@@ -9,7 +9,8 @@ Ext.define("CrazyHat.view.GameScreen", {
     extend: 'Ext.Panel',
 	
     requires: [
-    'Ext.Msg'
+    'Ext.Msg',
+    'CrazyHat.model.Player'
     ],
 		
     config: {
