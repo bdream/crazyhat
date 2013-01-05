@@ -19,6 +19,13 @@ Ext.define("CrazyHat.view.GameScreen", {
         }
     },
     
+    initialize: function(){
+        this.callParent();
+        
+        // # Создание первого экрана для игры
+        this.currentTurnView = this.createCurrentPlayerTurnView();
+    },
+    
     // Хранилище слов
     wordsStore: null,
     
@@ -55,12 +62,12 @@ Ext.define("CrazyHat.view.GameScreen", {
         // Сохраняет слова в хранилище слов
         // TODO: Использовать внешний источник для получения слов
         this.wordsStore = Ext.create('CrazyHat.model.WordsStore');
+        // Генерирует заново список слов
+        this.wordsStore.recreateWordsList();
     },
     
     // Запускает игру
     startGame: function(){
-        // # Создание первого экрана для игры
-        this.currentTurnView = this.createCurrentPlayerTurnView();
         
         // # Настраивает форму для текущего хода
         var firstPlayer = this.getNextPlayer()
@@ -115,6 +122,8 @@ Ext.define("CrazyHat.view.GameScreen", {
                     // Берет количество слов в хранилище
                     var wordsInHatCount = this.wordsStore.getWordsCount();
                     
+                    console.log('wordsInHatCount: ' + wordsInHatCount);
+                        
                     // Если в хранилище еще есть слова
                     if(wordsInHatCount > 0){
                         // Берет случайное слово из хранилища

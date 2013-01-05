@@ -1,21 +1,7 @@
 Ext.define('CrazyHat.model.WordsStore',{
     
     // Список слов
-    wordList: [
-        'Линейка',
-        'Кактус',
-        'Гардемарин',
-        'Лютик',
-        'Принцесса',
-        'Иголка',
-        'Шапка',
-        'Кастрюля',
-        'Карамель',
-        'Картуз',
-        'Указатель',
-        'Дорога',
-        'Вермишель'
-    ],
+    wordList: [],
     
     currentWordIndex: null,
     
@@ -53,7 +39,7 @@ Ext.define('CrazyHat.model.WordsStore',{
     
     // Заново генерирует список слов
     recreateWordsList: function(){
-        this.wordsList = [
+        this.wordList = [
             'Линейка',
             'Кактус',
             'Гардемарин',

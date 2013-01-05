@@ -12,6 +12,8 @@ Ext.define("CrazyHat.view.MainScreen", {
             type: 'card'
         }
     },
+    
+    gameScreen: null,   // Экран игры
 
     gameSettings:null, // игровые настройки
     
@@ -38,6 +40,14 @@ Ext.define("CrazyHat.view.MainScreen", {
                 }
             }
         });
+        
+        // Создание экрана для игры
+        this.gameScreen = Ext.create('CrazyHat.view.GameScreen', {
+            listeners: {
+                scope: this,
+                gameEnded: this.onGameEnded
+            }
+        });
 		
         this.setItems([
             this.menuScreen
@@ -49,21 +59,14 @@ Ext.define("CrazyHat.view.MainScreen", {
 
         // применяем настройки, введенные на вьюшке SettingsScreen
         this.gameSettings = localGameSettings;
-
-        var gameScreen = Ext.create('CrazyHat.view.GameScreen', {
-            listeners: {
-                scope: this,
-                gameEnded: this.onGameEnded
-            }
-        });
         
-        gameScreen.setGameSettings(localGameSettings.data);
+        this.gameScreen.setGameSettings(localGameSettings.data);
         
         // Set active game screen
-        this.setActiveItem(gameScreen);
+        this.setActiveItem(this.gameScreen);
         
         // Запускает игру
-        gameScreen.startGame();
+        this.gameScreen.startGame();
     },
     
     // Обрабатывает событие завершения игры
