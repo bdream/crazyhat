@@ -68,6 +68,8 @@ Ext.define("CrazyHat.view.GameScreen", {
     
     // Запускает игру
     startGame: function(){
+        // Обнуляет номер текущего игрока
+        this.currentPlayerNumber = null;
         
         // # Настраивает форму для текущего хода
         var firstPlayer = this.getNextPlayer()
