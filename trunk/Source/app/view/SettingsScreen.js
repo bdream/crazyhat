@@ -42,6 +42,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                 
             items: [
             {
+                id: 'timeForRound',
                 xtype: 'numberfield',
                 label: 'Время раунда: ',
                 labelWidth: '100%',
@@ -115,18 +116,65 @@ Ext.define("CrazyHat.view.SettingsScreen", {
             button
             ]);
     },
+    
+    // Checking validation
+    isValid: function() {
+        var fieldsArray = [
+            document.getElementById('timeForRound'),
+            document.getElementById('wordsPerPerson'),
+            document.getElementById('personsCount')
+        ]
+        
+        for(var i in fieldsArray){
+            // if anyone isn't valid return false
+            if(!checkNumberFieldValidity(fieldsArray[i]))
+                return false;
+        }
+        
+        return true;
+    },
 	
     onButtonClick: function() {
-        
-        //alert(this.teamsCount);
+        try
+        {
+            var timeForRound = Ext.getCmp('timeForRound');
             
+            console.log(timeForRound);
             
-        var gameSettings = Ext.create('CrazyHat.model.GameSettings', {
-            timeForRound: this.timeForRound, 
-            wordsPerPerson: this.wordsPerPerson, 
-            personsCount: this.personsCount
-        });
-                    
-        this.fireEvent('buttonclick', gameSettings);
+            if(!checkNumberFieldValidity(timeForRound)){
+                var message =
+                    "Укажите время раунда в пределах от "
+                    + timeForRound.getMinValue()
+                    + " до "
+                    + timeForRound.getMaxValue();
+                throw new Error(message);
+            }
+
+            var gameSettings = Ext.create('CrazyHat.model.GameSettings', {
+                timeForRound: this.timeForRound, 
+                wordsPerPerson: this.wordsPerPerson, 
+                personsCount: this.personsCount
+            });
+
+            this.fireEvent('buttonclick', gameSettings);
+        }
+        catch(error)
+        {
+            Ext.Msg.alert('Ошибка ввода', error.message);
+        }
     }
 });
+
+function checkNumberFieldValidity(numberField){
+    var minValue = numberField.getMinValue();
+    var maxValue = numberField.getMaxValue();
+    var value = numberField.getValue();
+    
+    if(typeof value != 'number')
+        return false;
+    
+    if(minValue <= value && value <= maxValue)
+        return true;
+    
+    return false;
+}
