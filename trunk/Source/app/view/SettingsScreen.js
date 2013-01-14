@@ -47,7 +47,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                 label: 'Время раунда: ',
                 labelWidth: '100%',
                 value: 20,
-                minValue: 1,
+                minValue: 10,
                 maxValue: 120,
                 itemId: 'timeForRound',
                 listeners: {
@@ -64,8 +64,8 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                 xtype: 'numberfield',
                 label: 'Людей в игре: ',
                 labelWidth: '100%',
-                value: 4,
-                minValue: 4,
+                value: 6,
+                minValue: 3,
                 maxValue: 30,
                 itemId: 'personsCount',
                 listeners: {
@@ -83,7 +83,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                 label: 'Слов игрока: ',
                 labelWidth: '100%',
                 value: 5,
-                minValue: 1,
+                minValue: 5,
                 maxValue: 20,
                 itemId: 'wordsPerPerson',
                 listeners: {
