@@ -78,6 +78,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                 }
             },
             {
+                id: 'wordsPerPerson',
                 xtype: 'numberfield',
                 label: 'Слов игрока: ',
                 labelWidth: '100%',
@@ -156,6 +157,17 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                     + personsCount.getMinValue()
                     + " до "
                     + personsCount.getMaxValue();
+                throw new Error(message);
+            }
+            
+            var wordsPerPerson = Ext.getCmp('wordsPerPerson');
+            if(!checkNumberFieldValidityAndFix(wordsPerPerson)){
+                var message = 
+                    "Укажите количество слов на человека от "
+                    + wordsPerPerson.getMinValue()
+                    + " до "
+                    + wordsPerPerson.getMaxValue();
+                throw new Error(message);
             }
 
             var gameSettings = Ext.create('CrazyHat.model.GameSettings', {
@@ -189,7 +201,7 @@ function checkNumberFieldValidityAndFix(numberField){
     if(minValue > value)
         numberField.setValue(minValue);
     
-    if(maxValue > value)
+    if(maxValue < value)
         numberField.setValue(maxValue);
     
     return false;
