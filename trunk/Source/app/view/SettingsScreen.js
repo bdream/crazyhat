@@ -60,6 +60,7 @@ Ext.define("CrazyHat.view.SettingsScreen", {
                 }
             },
             {
+                id: 'personsCount',
                 xtype: 'numberfield',
                 label: 'Людей в игре: ',
                 labelWidth: '100%',
@@ -137,17 +138,24 @@ Ext.define("CrazyHat.view.SettingsScreen", {
     onButtonClick: function() {
         try
         {
-            var timeForRound = Ext.getCmp('timeForRound');
-            
-            console.log(timeForRound);
-            
-            if(!checkNumberFieldValidity(timeForRound)){
+            var timeForRound = Ext.getCmp('timeForRound');        
+            if(!checkNumberFieldValidityAndFix(timeForRound)){
                 var message =
-                    "Укажите время раунда в пределах от "
+                    "Укажите время раунда от "
                     + timeForRound.getMinValue()
                     + " до "
-                    + timeForRound.getMaxValue();
+                    + timeForRound.getMaxValue()
+                    + " секунд";
                 throw new Error(message);
+            }
+            
+            var personsCount = Ext.getCmp('personsCount');
+            if(!checkNumberFieldValidityAndFix(personsCount)){
+                var message = 
+                    "Укажите число игроков от "
+                    + personsCount.getMinValue()
+                    + " до "
+                    + personsCount.getMaxValue();
             }
 
             var gameSettings = Ext.create('CrazyHat.model.GameSettings', {
@@ -165,16 +173,24 @@ Ext.define("CrazyHat.view.SettingsScreen", {
     }
 });
 
-function checkNumberFieldValidity(numberField){
+function checkNumberFieldValidityAndFix(numberField){
     var minValue = numberField.getMinValue();
     var maxValue = numberField.getMaxValue();
     var value = numberField.getValue();
     
-    if(typeof value != 'number')
+    if(typeof value != 'number'){
+        numberField.setValue(minValue);
         return false;
+    }
     
     if(minValue <= value && value <= maxValue)
         return true;
+    
+    if(minValue > value)
+        numberField.setValue(minValue);
+    
+    if(maxValue > value)
+        numberField.setValue(maxValue);
     
     return false;
 }
